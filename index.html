@@ -6,35 +6,60 @@
   <title>Twokinds Universe</title>
   <link rel="stylesheet" href="css/style.css">
   <script src="js/script.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <style>
+    @media only screen and (max-width:700px) {
+      .page, .blurred-page {
+        max-width: 100%;
+      }
+      body {
+        margin: 0;
+      }
+      .on-img-nav {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
-  <div class="content">
+  <div class="hidden">
+    <button onclick="changeTab(1)" class="btn">Pages</button>
+    <button onclick="changeTab(2)" class="btn">Archive</button>
+  </div>
+  <div id="tab-1" class="tab content">
     <div class="image-container">
+      <div class="on-img-nav fd-r">
+        <button onclick="update(pageNumber = pageNumber - 1)"></button>
+        <button onclick="update(pageNumber = pageNumber + 1)"></button>
+      </div>
       <img src="" class="page justify-center"></img>
       <img src="" class="blurred-page justify-center"></img>
     </div>
     <div class="fd-c gap-10">
-        <div class="fd-r justify-center gap-10">
-          <p class="page-number col-white">pageNumber</p>
-          <p class="release-date col-white">releaseDate</p>
-        </div>
-        <div class="fd-r justify-center gap-10">
-          <p class="error hidden">There is no such page!</p>
-          <input type="number" placeholder="Page Number" class="page-input"></input>
-          <a href="" class="go-to-page-button btn">Go to</a>
-        </div>
-        <div class="fd-r justify-center gap-5">
-          <a href="" class="first-page-button btn">First</a>
-          <a href="" class="previous-page-button btn">Previous</a>
-          <a href="" class="next-page-button btn">Next</a>
-          <a href="" class="last-page-button btn">Last</a>
-        </div>
-        <div class="fd-r justify-center gap-5">
-          <a href="" class="sketch-ver-button btn" target="_blank">Sketch</a>
-          <a href="" class="speschless-ver-button btn">Speachless</a>
-        <div>
+      <div class="fd-r justify-center gap-10">
+        <p class="page-number col-white">pageNumber</p>
+        <p class="release-date col-white">releaseDate</p>
       </div>
+      <div class="fd-r justify-center gap-10">
+        <p class="error hidden">There is no such page!</p>
+        <input type="number" placeholder="Page Number" class="page-input"></input>
+        <button onclick="goToPage()" class="btn">Go to</button>
+      </div>
+      <div class="fd-r justify-center gap-5">
+        <button onclick="update(pageNumber = 0)" class="btn">First</button>
+        <button onclick="update(pageNumber = pageNumber - 1)" class="btn">Previous</button>
+        <button onclick="update(pageNumber = pageNumber + 1)" class="btn">Next</button>
+        <button onclick="update(pageNumber = lastPageNumber - 1)" class="btn">Last</button>
+      </div>
+      <div class="fd-r justify-center gap-5">
+        <a href="" class="sketch-ver-button btn" target="_blank">Sketch</a>
+        <a href="" class="speschless-ver-button btn" target="_blank">Speachless</a>
+      <div>
     </div>
+  </div>
+  
+  <div id="tab-2" class="tab content hidden">
+    <button onclick="createPreviews()">Load</button>
   </div>
 </body>
 </html>

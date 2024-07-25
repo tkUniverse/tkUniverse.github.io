@@ -1202,10 +1202,6 @@ let full_urls = [
         "https://cdn.twokinds.keenspot.com/comics/20240721.png"
     ];
 
-let previousPageButton = document.querySelector('.previous-page-button');
-let nextPageButton = document.querySelector('.next-page-button');
-let lastPageButton = document.querySelector('.last-page-button');
-let firstPageButton = document.querySelector('.first-page-button');
 let page = document.querySelector('.page');
 let blurredPage = document.querySelector('.blurred-page');
 let pageCounter = document.querySelector('.page-number');
@@ -1229,36 +1225,7 @@ let update = function (updPageNumber) {
 
 update(pageNumber);
 
-previousPageButton.addEventListener('click', function (evt) {
-  evt.preventDefault();
-  if (!pageNumber == 0) {
-    pageNumber = pageNumber - 1;
-    update(pageNumber);
-  }
-});
-
-nextPageButton.addEventListener('click', function (evt) {
-  evt.preventDefault();
-  if (pageNumber < lastPageNumber) {
-    pageNumber = pageNumber + 1;
-    update(pageNumber);
-  }
-});
-
-lastPageButton.addEventListener('click', function (evt) {
-  evt.preventDefault();
-  pageNumber = full_urls.length - 1;
-  update(pageNumber);
-});
-
-firstPageButton.addEventListener('click', function (evt) {
-  evt.preventDefault();
-  pageNumber = 0;
-  update(pageNumber);
-});
-
-goToButton.addEventListener('click', function (evt) {
-  evt.preventDefault();
+let goToPage = function() {
   let pageInput = document.querySelector('.page-input').valueAsNumber;
   pageNumber = pageInput;
   if (pageInput >= 1 && pageInput <= lastPageNumber + 1) {
@@ -1268,4 +1235,29 @@ goToButton.addEventListener('click', function (evt) {
     document.querySelector('.error').classList.remove('hidden');
   }
   document.querySelector('.page-input').value = "";
-});
+};
+
+let changeTab = function(tabNumber) {
+  let targetPage = document.getElementById('tab-'+tabNumber);
+  let otherPages = document.querySelectorAll('.tab');
+  otherPages.forEach(function(otherPages) {
+    otherPages.classList.add('hidden');
+  });
+  targetPage.classList.remove('hidden');
+}
+
+let createPreviews = function() {
+  let archive = document.getElementById('tab-2');
+  for (let i = 0; i < full_urls.length; i++) {
+    let link = document.createElement('a');
+    link.href = full_urls[i];
+    link.target = '_blank';
+    archive.appendChild(link);
+    let preview = document.createElement('img');
+    preview.classList.add('preview'+i+1);
+    preview.classList.add('preview');
+    preview.src = full_urls[i];
+    link.appendChild(preview);
+  }
+}
+
