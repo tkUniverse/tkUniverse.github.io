@@ -57,7 +57,7 @@ body {
 }
 
 .blurred-page {
-  filter: blur(100px);
+  filter: blur(50px);
   width: 600px;
   position: absolute;
   z-index: -1;

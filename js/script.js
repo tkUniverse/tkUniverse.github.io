@@ -1212,6 +1212,25 @@ let goToButton = document.querySelector('.go-to-page-button');
 let pageNumber = 0;
 let lastPageNumber = full_urls.length;
 
+let changePage = function (currentPage, action) {
+  if (action === 'first') {
+    update(pageNumber = 0);
+  }
+  if (action === 'last') {
+    update(pageNumber = lastPageNumber - 1);
+  }
+  if (currentPage != 0) {
+    if (action === 'previous') {
+      update(pageNumber = pageNumber - 1);
+    }
+  }
+  if (currentPage != lastPageNumber - 1) {
+    if (action === 'next') {
+      update(pageNumber = pageNumber + 1);
+    }
+  }
+}
+
 let update = function (updPageNumber) {
   page.src = full_urls[updPageNumber];
   blurredPage.src = full_urls[updPageNumber];
@@ -1227,10 +1246,9 @@ update(pageNumber);
 
 let goToPage = function() {
   let pageInput = document.querySelector('.page-input').valueAsNumber;
-  pageNumber = pageInput;
   if (pageInput >= 1 && pageInput <= lastPageNumber + 1) {
     document.querySelector('.error').classList.add('hidden');
-    update(pageInput - 1);
+    update(pageNumber = pageInput - 1);
   } else {
     document.querySelector('.error').classList.remove('hidden');
   }
