@@ -13,6 +13,7 @@ body {
 
 .page {
   max-width: 600px;
+  transition: all 0.5s;
 }
 
 .hidden {
@@ -77,12 +78,13 @@ body {
   filter: brightness(50%);
 }
 
-.page-input {
+.page-input, #language {
   border-radius: 15px;
   border: none;
   background-color: black;
   color: white;
   text-align: center;
+  width: 100px;
 }
 
 .page-input::placeholder {
@@ -109,4 +111,8 @@ input[type=number] {
   display: flex;
   opacity: 0;
   cursor: pointer;
+}
+
+.ta-c {
+  text-align: center;
 }
