@@ -3,6 +3,7 @@ let currentLanguage = 'en';
 let pagesInfo = {
   enPages: `https://tkuniverse.github.io/en/pages/${pageNumber + 1}.png`,
   ruPages: `https://twokinds.ru/comic/${pageNumber + 1}/page`,
+  byPages: `https://tkuniverse.github.io/by/pages/${pageNumber + 1}.png`,
   totalPages: 1235
 };
 
@@ -17,6 +18,7 @@ let languageSelect = document.getElementById('language');
 let lastPageNumber = pagesInfo.totalPages;
 
 document.addEventListener('DOMContentLoaded', function () {
+  currentLanguage = languageSelect.value;
   update(pageNumber);
 });
 
@@ -47,6 +49,10 @@ let update = function (updPageNumber) {
     pagesInfo.ruPages = `https://twokinds.ru/comic/${updPageNumber + 1}/page`;
     page.src = pagesInfo.ruPages;
     blurredPage.src = pagesInfo.ruPages;
+  } else if (currentLanguage === 'by') {
+    pagesInfo.byPages = `https://tkuniverse.github.io/by/pages/${pageNumber + 1}.png`;
+    page.src = pagesInfo.byPages;
+    blurredPage.src = pagesInfo.byPages;
   }
   pageCounter.textContent = `${pageNumber + 1}/${lastPageNumber}`;
 };
