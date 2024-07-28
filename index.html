@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -6,19 +7,6 @@
   <link rel="stylesheet" href="css/style.css">
   <script src="js/script.js" defer></script>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  <style>
-    @media only screen and (max-width:700px) {
-      .page, .blurred-page {
-        max-width: 100%;
-      }
-      body {
-        margin: 0;
-      }
-      .on-img-nav {
-        width: 100%;
-      }
-    }
-  </style>
 </head>
 <body>
   <div class="hidden">
@@ -27,40 +15,44 @@
   </div>
   <div id="tab-1" class="tab content">
     <div class="image-container">
-      <div class="on-img-nav fd-r">
-        <button onclick="changePage(pageNumber, 'previous')"></button>
-        <button onclick="changePage(pageNumber, 'next')"></button>
+      <div class="on-img-nav fd-r zi-2">
+        <button onclick="changePage(pagesInfo.pageNumber, 'previous')"></button>
+        <button onclick="changePage(pagesInfo.pageNumber, 'next')"></button>
       </div>
       <img src="" class="page justify-center"></img>
       <img src="" class="blurred-page justify-center"></img>
     </div>
-    <div class="fd-c gap-10">
-      <div class="fd-r justify-center gap-10">
-        <p class="page-number col-white">pageNumber</p>
-        <p class="release-date col-white hidden">releaseDate</p>
-      </div>
+    <div class="fd-c gap-10 navigation zi-1">
       <div class="fd-r justify-center gap-10">
         <p class="error col-white hidden">There is no such page!</p>
       </div>
-      <div class="fd-r justify-center gap-10">
-        <input type="number" placeholder="Page Number" class="page-input"></input>
-        <button id="go-to-page-button" class="btn">Go to</button>
-      </div>
       <div class="fd-r justify-center gap-5">
-        <button onclick="changePage(pageNumber, 'first')" class="btn">First</button>
-        <button onclick="changePage(pageNumber, 'previous')" class="btn">Previous</button>
-        <button onclick="changePage(pageNumber, 'next')" class="btn">Next</button>
-        <button onclick="changePage(pageNumber, 'last')" class="btn">Last</button>
+        <button onclick="changePage(pagesInfo.pageNumber, 'first')" class="btn">First</button>
+        <button onclick="changePage(pagesInfo.pageNumber, 'previous')" class="btn">Previous</button>
+        <p class="page-number col-white btn">pageNumber</p>
+        <button onclick="changePage(pagesInfo.pageNumber, 'next')" class="btn">Next</button>
+        <button onclick="changePage(pagesInfo.pageNumber, 'last')" class="btn">Last</button>
       </div>
-      <div class="fd-r justify-center gap-5">
-        <a href="" class="sketch-ver-button btn" target="_blank">Sketch</a>
-        <a href="" class="speschless-ver-button btn" target="_blank">Speachless</a>
-        <select id="language">
-          <option value="en">English</option>
-          <option value="ru">Russian</option>
-          <option value="by">Belarusian</option>
-        </select>
-      <div>
+      <div class="fd-c gap-10">
+        <button class="btn" id="tools-btn">Tools</button>
+        <div id="tools-container" class="gap-10 fd-c hidden">
+          <div>
+            <a href="" class="sketch-ver-button btn" target="_blank">Sketch</a>
+            <a href="" class="speschless-ver-button btn" target="_blank">Speachless</a>
+            <select id="language">
+              <option value="en">English</option>
+              <option value="ru">Russian</option>
+              <option value="by">Belarusian</option>
+            </select>
+          </div>
+          <div>
+            <form id="go-to-page-form">
+              <input type="number" placeholder="Page Number" class="page-input"></input>
+              <button id="go-to-page-button" class="btn" type="submit">Go to</button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   
@@ -68,7 +60,7 @@
     <button onclick="createPreviews()">Load</button>
   </div>
   <footer>
-    <a href="https://twokinds.keenspot.com/license/"><p class="col-white ta-c" target="_blank">TWOKINDS, its logo, and all related characters are copyright © 2024 Thomas J. Fischbach. All rights reserved.</p></a>
+    <a href="https://twokinds.keenspot.com/license/" target="_blank"><p class="col-white ta-c hidden">TWOKINDS, its logo, and all related characters are copyright © 2024 Thomas J. Fischbach. All rights reserved.</p></a>
   </footer>
 </body>
 </html>
