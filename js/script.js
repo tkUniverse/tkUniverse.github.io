@@ -36,14 +36,19 @@ function setCookie(name, value, options = {}) {
 }
 
 let update = function () {
-  let imgUrl = `https://tkuniverse.github.io/${pagesInfo.currentLanguage}/pages/${pagesInfo.pageNumber + 1}.png`;
+  document.querySelector('.image-container').classList.remove('page-error');
 
+  let imgUrl = `https://tkuniverse.github.io/${pagesInfo.currentLanguage}/pages/${pagesInfo.pageNumber + 1}.png`;
+  let sketchUrl = `https://tkuniverse.github.io/sketch/pages/${pagesInfo.pageNumber + 1}.png`
+
+  sketchVerButton.href = sketchUrl;
   page.src = imgUrl;
   blurredPage.src = imgUrl;
 
   page.onerror = function () {
     this.onerror = null;
     this.src = 'img/placeholder.png';
+    document.querySelector('.image-container').classList.add('page-error');
   };
 
   blurredPage.onerror = function () {
@@ -70,8 +75,8 @@ let page = document.querySelector('.page');
 let blurredPage = document.querySelector('.blurred-page');
 let pageCounter = document.querySelector('.page-number');
 let releaseDate = document.querySelector('.release-date');
-let sketchVerButton = document.querySelector('.sketch-ver-button');
-let speschlessVerButton = document.querySelector('.speschless-ver-button');
+let sketchVerButton = document.getElementById('sketch-ver-button');
+let speschlessVerButton = document.getElementById('speachless-ver-button');
 let goToButton = document.getElementById('go-to-page-button');
 let goToForm = document.getElementById('go-to-page-form');
 let languageSelect = document.getElementById('language');
@@ -101,11 +106,8 @@ goToForm.addEventListener('submit', function(evt) {
   evt.preventDefault();
   let pageInput = document.querySelector('.page-input').valueAsNumber;
   if (pageInput >= 1 && pageInput <= lastPageNumber) {
-    document.querySelector('.error').classList.add('hidden');
     pagesInfo.pageNumber = pageInput - 1;
     update();
-  } else {
-    document.querySelector('.error').classList.remove('hidden');
   }
   document.querySelector('.page-input').value = "";
 });

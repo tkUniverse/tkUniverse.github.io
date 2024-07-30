@@ -23,9 +23,6 @@
       <img src="" class="blurred-page justify-center"></img>
     </div>
     <div class="fd-c gap-10 navigation zi-1">
-      <div class="fd-r justify-center gap-10">
-        <p class="error col-white hidden">There is no such page!</p>
-      </div>
       <div class="fd-r justify-center gap-5">
         <button onclick="changePage(pagesInfo.pageNumber, 'first')" class="btn">First</button>
         <button onclick="changePage(pagesInfo.pageNumber, 'previous')" class="btn">Previous</button>
@@ -36,16 +33,16 @@
       <div class="fd-c gap-10">
         <button class="btn" id="tools-btn">Tools</button>
         <div id="tools-container" class="gap-10 fd-c hidden">
-          <div>
-            <a href="" class="sketch-ver-button btn" target="_blank">Sketch</a>
-            <a href="" class="speschless-ver-button btn" target="_blank">Speachless</a>
+          <div class="page-options-section">
+            <a id="sketch-ver-button" class="btn" target="_blank">Sketch</a>
+            <a id="speachless-ver-button" class="btn" target="_blank">Speachless</a>
             <select id="language">
               <option value="en">English</option>
               <option value="ru">Russian</option>
               <option value="by">Belarusian</option>
             </select>
           </div>
-          <div>
+          <div class="fd-c gap-10 zi-1 go-to-page-section">
             <form id="go-to-page-form">
               <input type="number" placeholder="Page Number" class="page-input"></input>
               <button id="go-to-page-button" class="btn" type="submit">Go to</button>
