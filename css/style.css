@@ -203,6 +203,9 @@ footer {
     text-align: center;
   }
 
+  #tab-2 {
+    grid-template-columns: auto auto auto !important;
+  }
   
 }
 
@@ -261,4 +264,19 @@ a.btn {
   margin-top: 0.625rem;
   font-weight: 500;
   display: flex;
+}
+
+.preview {
+  width: 100px;
+  height: 130px;
+}
+
+.preview:hover {
+  filter: brightness(50%);
+}
+
+#tab-2 {
+  display: inline-grid;
+  grid-template-columns: auto auto auto auto auto;
+  gap: 10px;
 }

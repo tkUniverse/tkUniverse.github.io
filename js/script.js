@@ -69,6 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
     setCookie('pagesInfo', JSON.stringify(pagesInfo));
   }
   update();
+  createPreviews()
 });
 
 let page = document.querySelector('.page');
@@ -121,3 +122,32 @@ toolsButton.addEventListener('click', function () {
     isToolsShown = false;
   }
 });
+
+let previewToPage = function (pageNumber) {
+  pagesInfo.pageNumber = pageNumber;
+  update();
+  changeTab(1);
+}
+
+let createPreviews = function() {
+  let archive = document.getElementById('tab-2');
+  for (let i = 1; i < lastPageNumber + 1; i++) {
+    let link = document.createElement('button');
+    link.onclick = () => previewToPage(i-1);
+    archive.appendChild(link);
+    let preview = document.createElement('img');
+    preview.classList.add('preview'+i);  
+    preview.classList.add('preview');
+    preview.src = `https://tkuniverse.github.io/${pagesInfo.currentLanguage}/pages/${i}.png`;
+    link.appendChild(preview);
+  }
+}
+
+let changeTab = function(tabNumber) {
+  let targetPage = document.getElementById('tab-'+tabNumber);
+  let otherPages = document.querySelectorAll('.tab');
+  otherPages.forEach(function(otherPages) {
+    otherPages.classList.add('hidden');
+  });
+  targetPage.classList.remove('hidden');
+}
