@@ -38,8 +38,8 @@ function setCookie(name, value, options = {}) {
 let update = function () {
   document.querySelector('.image-container').classList.remove('page-error');
 
-  let imgUrl = `https://tkuniverse.github.io/${pagesInfo.currentLanguage}/pages/${pagesInfo.pageNumber + 1}.png`;
-  let sketchUrl = `https://tkuniverse.github.io/sketch/pages/${pagesInfo.pageNumber + 1}.png`
+  let imgUrl = `https://tkuniverse.space/${pagesInfo.currentLanguage}/pages/${pagesInfo.pageNumber + 1}.png`;
+  let sketchUrl = `https://tkuniverse.space/sketch/pages/${pagesInfo.pageNumber + 1}.png`
 
   sketchVerButton.href = sketchUrl;
   page.src = imgUrl;
@@ -56,8 +56,6 @@ let update = function () {
     this.src = 'img/placeholder.png';
   };
 
-  updateMetaTag('og:title', `Twokinds Universe - Page ${pagesInfo.pageNumber + 1}`);
-  updateMetaTag('og:image', `https://tkuniverse.github.io/${pagesInfo.currentLanguage}/pages/${pagesInfo.pageNumber + 1}.png`);
   setCookie('pagesInfo', JSON.stringify(pagesInfo));
   pageCounter.textContent = `${pagesInfo.pageNumber + 1}/${lastPageNumber}`;
   pagesInfo.currentLanguage = languageSelect.value;
@@ -139,7 +137,7 @@ let createPreviews = function() {
     let preview = document.createElement('img');
     preview.classList.add('preview'+i);  
     preview.classList.add('preview');
-    preview.src = `https://tkuniverse.github.io/${pagesInfo.currentLanguage}/pages/${i}.png`;
+    preview.src = `https://tkuniverse.space/${pagesInfo.currentLanguage}/pages/${i}.png`;
     link.appendChild(preview);
   }
 }
@@ -151,16 +149,4 @@ let changeTab = function(tabNumber) {
     otherPages.classList.add('hidden');
   });
   targetPage.classList.remove('hidden');
-}
-
-function updateMetaTag(property, content) {
-  let metaTag = document.querySelector(`meta[property='${property}'], meta[name='${property}']`);
-  if (metaTag) {
-      metaTag.setAttribute('content', content);
-  } else {
-      metaTag = document.createElement('meta');
-      metaTag.setAttribute('property', property);
-      metaTag.setAttribute('content', content);
-      document.head.appendChild(metaTag);
-  }
 }
