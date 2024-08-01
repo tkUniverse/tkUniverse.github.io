@@ -41,6 +41,12 @@ let update = function () {
   let imgUrl = `https://tkuniverse.space/${pagesInfo.currentLanguage}/pages/${pagesInfo.pageNumber + 1}.png`;
   let sketchUrl = `https://tkuniverse.space/sketch/pages/${pagesInfo.pageNumber + 1}.png`
 
+  if (pagesInfo.pageNumber < 857) {
+    sketchVerButton.classList.add('hidden');
+  } else {
+    sketchVerButton.classList.remove('hidden');
+  }
+
   sketchVerButton.href = sketchUrl;
   page.src = imgUrl;
   blurredPage.src = imgUrl;
