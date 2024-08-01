@@ -69,7 +69,6 @@ document.addEventListener('DOMContentLoaded', function () {
     setCookie('pagesInfo', JSON.stringify(pagesInfo));
   }
   update();
-  createPreviews()
 });
 
 let page = document.querySelector('.page');
