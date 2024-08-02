@@ -49,6 +49,14 @@ body p {
   text-decoration: none;
 }
 
+.btn:disabled, .page-input:disabled, #language:disabled, #page-size:disabled {
+  background: rgba(58, 61, 64, 0.3);
+  color: rgba(236, 240, 241, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
 .btn:hover, .btn:active, .page-input:hover, .page-input:active, #language:hover, #language:active, #page-size:hover, #page-size:active {
   background: rgba(74, 77, 81, 0.7);
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(74, 77, 81, 0.7));

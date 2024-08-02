@@ -2,7 +2,8 @@ let pagesInfo = {
   pageNumber: 1234,
   totalPages: 1235,
   pageSize: 'optml',
-  currentLanguage: 'en'
+  currentLanguage: 'en',
+  isSketch: true
 };
 
 function getCookie(name) {
@@ -43,14 +44,18 @@ let update = function () {
   let sketchUrl = `https://tkuniverse.space/sketch/pages/${pagesInfo.pageNumber + 1}.png`
 
   if (pagesInfo.pageNumber < 857) {
-    sketchVerButton.classList.add('hidden');
+    sketchVerButton.disabled = true;
   } else {
-    sketchVerButton.classList.remove('hidden');
+    sketchVerButton.disabled = false;
   }
 
-  sketchVerButton.href = sketchUrl;
-  page.src = imgUrl;
-  blurredPage.src = imgUrl;
+  if (pagesInfo.isSketch) {
+    page.src = sketchUrl;
+    blurredPage.src = sketchUrl;
+  } else {
+    page.src = imgUrl;
+    blurredPage.src = imgUrl;
+  }
 
   page.onerror = function () {
     this.onerror = null;
@@ -175,3 +180,12 @@ let changePageSize = function () {
   blurredPage.classList.add('blurred-page', 'justify-center');
   blurredPage.classList.add(pagesInfo.pageSize);
 }
+
+sketchVerButton.addEventListener('click', function () {
+  if (pagesInfo.isSketch) {
+    pagesInfo.isSketch = false;
+  } else {
+    pagesInfo.isSketch = true;
+  }
+  update();
+});
