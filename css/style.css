@@ -216,7 +216,6 @@ footer {
   #tab-2 {
     grid-template-columns: auto auto auto !important;
   }
-  
 }
 
 .zi-1 {
@@ -301,4 +300,12 @@ a.btn {
 
 .w-300 {
   width: 300px;
+}
+
+#tools-container .btn {
+  margin-top: 5px;
+}
+
+.fd-c.gap-10.navigation.zi-1 .btn {
+  width: 100%;
 }

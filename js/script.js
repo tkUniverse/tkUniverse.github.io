@@ -189,8 +189,10 @@ let changePageSize = function () {
 sketchVerButton.addEventListener('click', function () {
   if (pagesInfo.isSketch) {
     pagesInfo.isSketch = false;
+    sketchVerButton.textContent = 'Sketch';
   } else {
     pagesInfo.isSketch = true;
+    sketchVerButton.textContent = 'Return';
   }
   update();
 });
