@@ -71,7 +71,7 @@ let update = function () {
     this.onerror = null;
     this.src = 'img/placeholder.png';
   };
- 
+
   setCookie('pagesInfo', JSON.stringify(pagesInfo));
   pageCounter.textContent = `${pagesInfo.pageNumber + 1}/${lastPageNumber}`;
   pagesInfo.currentLanguage = languageSelect.value;
