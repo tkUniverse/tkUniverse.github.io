@@ -236,7 +236,7 @@ a.btn {
   font-size: 14px;
 }
 
-#sketch-ver-button, #speachless-ver-button, #go-to-page-button {
+#sketch-ver-button, #speachless-ver-button, #go-to-page-button, #download-button {
   padding: 0.625rem 1.25rem;
   width: auto;
 }
