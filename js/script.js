@@ -41,7 +41,8 @@ let update = function () {
   document.querySelector('.image-container').classList.remove('page-error');
 
   let imgUrl = `https://tkuniverse.space/${pagesInfo.currentLanguage}/pages/${pagesInfo.pageNumber + 1}.png`;
-  let sketchUrl = `https://tkuniverse.space/sketch/pages/${pagesInfo.pageNumber + 1}.png`
+  let sketchUrl = `https://tkuniverse.space/sketch/pages/${pagesInfo.pageNumber + 1}.png`;
+  let currentUrl = imgUrl;
 
   if (pagesInfo.pageNumber < 857) {
     sketchVerButton.disabled = true;
@@ -50,12 +51,15 @@ let update = function () {
   }
 
   if (pagesInfo.isSketch) {
-    page.src = sketchUrl;
-    blurredPage.src = sketchUrl;
+    currentUrl = sketchUrl;
   } else {
-    page.src = imgUrl;
-    blurredPage.src = imgUrl;
+    currentUrl = imgUrl;
   }
+
+  page.src = currentUrl;
+  blurredPage.src = currentUrl;
+  download.href = currentUrl.slice(24);
+  download.download = `Twokinds Universe - ${pagesInfo.pageNumber + 1}${pagesInfo.currentLanguage}.png`;
 
   page.onerror = function () {
     this.onerror = null;
@@ -67,7 +71,7 @@ let update = function () {
     this.onerror = null;
     this.src = 'img/placeholder.png';
   };
-
+ 
   setCookie('pagesInfo', JSON.stringify(pagesInfo));
   pageCounter.textContent = `${pagesInfo.pageNumber + 1}/${lastPageNumber}`;
   pagesInfo.currentLanguage = languageSelect.value;
@@ -94,6 +98,7 @@ let goToButton = document.getElementById('go-to-page-button');
 let goToForm = document.getElementById('go-to-page-form');
 let languageSelect = document.getElementById('language');
 let sizeSelect = document.getElementById('page-size');
+let downloadButton = document.getElementById('download');
 let lastPageNumber = pagesInfo.totalPages;
 let toolsButton = document.getElementById('tools-btn');
 let isToolsShown = false;
@@ -189,3 +194,4 @@ sketchVerButton.addEventListener('click', function () {
   }
   update();
 });
+
