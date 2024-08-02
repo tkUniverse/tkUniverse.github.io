@@ -26,7 +26,6 @@ body p {
 }
 
 .page {
-  max-width: 600px;
   transition: all 0.5s;
   position: relative;
   z-index: 1;
@@ -36,7 +35,7 @@ body p {
   display: none !important;
 }
 
-.btn, .page-input, #language  {
+.btn, .page-input, #language, #page-size  {
   background: rgba(58, 61, 64, 0.5);
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(58, 61, 64, 0.5));
   color: #ecf0f1;
@@ -50,7 +49,7 @@ body p {
   text-decoration: none;
 }
 
-.btn:hover, .btn:active, .page-input:hover, .page-input:active, #language:hover, #language:active {
+.btn:hover, .btn:active, .page-input:hover, .page-input:active, #language:hover, #language:active, #page-size:hover, #page-size:active {
   background: rgba(74, 77, 81, 0.7);
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(74, 77, 81, 0.7));
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.2);
@@ -93,6 +92,7 @@ body p {
   top: 0;
   left: 50%;
   transform: translateX(-50%);
+  transition: all 0.5s;
 }
 
 .image-container {
@@ -128,15 +128,17 @@ input[type=number] {
 .on-img-nav {
   position: absolute;
   height: 100%;
+  width: 100%;
 }
 
 .on-img-nav button {
-  width: 300px;
+  width: 100%;
   height: 100%;
   justify-content: space-between;
   display: flex;
   opacity: 0;
   cursor: pointer;
+  padding: 0;
 }
 
 .ta-c {
@@ -279,4 +281,16 @@ a.btn {
   display: inline-grid;
   grid-template-columns: auto auto auto auto auto;
   gap: 10px;
+}
+
+.w-600 {
+  width: 600px;
+}
+
+.orig {
+  width: 100%;
+}
+
+.w-300 {
+  width: 300px;
 }

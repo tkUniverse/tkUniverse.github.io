@@ -1,6 +1,7 @@
 let pagesInfo = {
   pageNumber: 1234,
   totalPages: 1235,
+  pageSize: 'optml',
   currentLanguage: 'en'
 };
 
@@ -65,6 +66,7 @@ let update = function () {
   setCookie('pagesInfo', JSON.stringify(pagesInfo));
   pageCounter.textContent = `${pagesInfo.pageNumber + 1}/${lastPageNumber}`;
   pagesInfo.currentLanguage = languageSelect.value;
+  changePageSize();
 };
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -86,12 +88,18 @@ let speschlessVerButton = document.getElementById('speachless-ver-button');
 let goToButton = document.getElementById('go-to-page-button');
 let goToForm = document.getElementById('go-to-page-form');
 let languageSelect = document.getElementById('language');
+let sizeSelect = document.getElementById('page-size');
 let lastPageNumber = pagesInfo.totalPages;
 let toolsButton = document.getElementById('tools-btn');
 let isToolsShown = false;
 
 languageSelect.addEventListener('change', function () {
   pagesInfo.currentLanguage = languageSelect.value;
+  update();
+});
+
+sizeSelect.addEventListener('change', function () {
+  pagesInfo.pageSize = sizeSelect.value;
   update();
 });
 
@@ -155,4 +163,15 @@ let changeTab = function(tabNumber) {
     otherPages.classList.add('hidden');
   });
   targetPage.classList.remove('hidden');
+}
+
+let changePageSize = function () {
+  page.className = '';
+  blurredPage.className = '';
+  
+  page.classList.add('page', 'justify-center');
+  page.classList.add(pagesInfo.pageSize);
+
+  blurredPage.classList.add('blurred-page', 'justify-center');
+  blurredPage.classList.add(pagesInfo.pageSize);
 }
