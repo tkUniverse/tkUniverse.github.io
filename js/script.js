@@ -1,9 +1,9 @@
 let pagesInfo = {
   pageNumber: 0,
   totalPages: 1235,
-  pageSize: 'optml',
+  pageSize: 'w-600',
   currentLanguage: 'en',
-  isSketch: true
+  isSketch: false
 };
 
 function getCookie(name) {
