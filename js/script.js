@@ -75,7 +75,9 @@ let update = function () {
   setCookie('pagesInfo', JSON.stringify(pagesInfo));
   pageCounter.textContent = `${pagesInfo.pageNumber + 1}/${lastPageNumber}`;
   pagesInfo.currentLanguage = languageSelect.value;
+  pagesInfo.pageSize = sizeSelect.value;
   changePageSize();
+  console.log(pagesInfo);
 };
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -84,6 +86,11 @@ document.addEventListener('DOMContentLoaded', function () {
     pagesInfo = JSON.parse(cookie);
   } else {
     setCookie('pagesInfo', JSON.stringify(pagesInfo));
+  }
+  if (pagesInfo.isSketch) {
+    sketchVerButton.textContent = 'Return';
+  } else {
+    sketchVerButton.textContent = 'Sketch';
   }
   update();
 });
@@ -186,7 +193,7 @@ let changePageSize = function () {
   blurredPage.classList.add(pagesInfo.pageSize);
 }
 
-sketchVerButton.addEventListener('click', function () {
+sketchVerButton.addEventListener('click', function() {
   if (pagesInfo.isSketch) {
     pagesInfo.isSketch = false;
     sketchVerButton.textContent = 'Sketch';
