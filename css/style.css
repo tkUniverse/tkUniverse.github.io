@@ -263,16 +263,14 @@ a.btn {
   text-align: center;
 }
 
-.page-options-section::before {
-  content: "Page options";
+.page-options-section .title {
   color: white;
   font-weight: 500;
   margin-bottom: 0.625rem;
   display: flex;
 }
 
-.go-to-page-section::before {
-  content: "Find page";
+.go-to-page-section .title {
   color: white;
   margin-top: 0.625rem;
   font-weight: 500;

@@ -10,7 +10,9 @@ const texts = {
         downloadButton: 'Download',
         sketchVerButton: 'Sketch',
         sketchVerButtonAlt: 'Return',
-        originalSizeOption: 'Original'
+        originalSizeOption: 'Original',
+        pageOptionsTitle: 'Page options',
+        findPageTitle: 'Find page'
     },
     
     ru: {
@@ -24,7 +26,9 @@ const texts = {
         downloadButton: 'Скачать',
         sketchVerButton: 'Скетч',
         sketchVerButtonAlt: 'Вернуться',
-        originalSizeOption: 'Оригинал'
+        originalSizeOption: 'Оригинал',
+        pageOptionsTitle: 'Настройки страницы',
+        findPageTitle: 'Найти страницу'
     },
     
     by: {
@@ -38,8 +42,8 @@ const texts = {
         downloadButton: 'Спампаваць',
         sketchVerButton: 'Эскіз',
         sketchVerButtonAlt: 'Вярнуцца',
-        originalSizeOption: 'Арыгінал'
+        originalSizeOption: 'Арыгінал',
+        pageOptionsTitle: "Опцыі старонкі",
+        findPageTitle: "Знайсці старонку"
     }
 };
-
-export default texts;

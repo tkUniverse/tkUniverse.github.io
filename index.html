@@ -6,6 +6,7 @@
   <title>Twokinds Universe</title>
   <link rel="stylesheet" href="css/style.css">
   <script src="js/script.js" defer></script>
+  <script src="js/texts.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <link rel="icon" href="img/logo.svg">
   <meta property="og:title" content="Twokinds Universe">
@@ -13,7 +14,7 @@
   <meta property="og:image" content="https://tkuniverse.space/img/link-preview.png">
   <meta property="og:url" content="https://tkuniverse.space">
   <meta property="og:type" content="website">
-  <meta name="keywords" content="twokinds, twokinds gallery, tkuniverse, twokinds universe, furry, furry comics, furry comic, two kinds comic, two kinds, twokinds rus, twokinds art">
+  <meta name="keywords" content="twokinds, twokinds gallery, tkuniverse, twokinds universe, two kinds universe, furry, furry comics, furry comic, two kinds comic, two kinds, twokinds rus, twokinds art">
   <meta name="description" content="Explore Everything About Twokinds Webcomic in One Place! Discover comic, characters, gallery, and more. Join the Twokinds Universe!">
 </head>
 <body>
@@ -33,36 +34,38 @@
       </div>
       <div class="fd-c gap-10 navigation zi-1">
         <div class="fd-r justify-center gap-5">
-          <button onclick="changePage(pagesInfo.pageNumber, 'first')" class="btn">First</button>
-          <button onclick="changePage(pagesInfo.pageNumber, 'previous')" class="btn">Previous</button>
+          <button onclick="changePage(pagesInfo.pageNumber, 'first')" class="btn" data-text="firstPageButton">First</button>
+          <button onclick="changePage(pagesInfo.pageNumber, 'previous')" class="btn" data-text="previousPageButton">Previous</button>
           <p class="page-number col-white btn">pageNumber</p>
-          <button onclick="changePage(pagesInfo.pageNumber, 'next')" class="btn">Next</button>
-          <button onclick="changePage(pagesInfo.pageNumber, 'last')" class="btn">Last</button>
+          <button onclick="changePage(pagesInfo.pageNumber, 'next')" class="btn" data-text="nextPageButton">Next</button>
+          <button onclick="changePage(pagesInfo.pageNumber, 'last')" class="btn" data-text="lastPageButton">Last</button>
         </div>
         <div class="fd-c gap-10">
-          <button class="btn" id="tools-btn">Tools</button>
+          <button class="btn" id="tools-btn" data-text="toolsButton">Tools</button>
           <div id="tools-container" class="gap-10 fd-c hidden">
             <div class="page-options-section">
+              <p class="title" data-text="pageOptionsTitle">Page options</p>
               <div>
-                <button id="sketch-ver-button" class="btn">Sketch</button>
-                <a id="speachless-ver-button" class="btn hidden" target="_blank">Speachless</a>
+                <button id="sketch-ver-button" class="btn" data-text="sketchVerButton">Sketch</button>
+                <a id="speachless-ver-button" class="btn hidden" target="_blank" data-text="">Speachless</a>
                 <select id="language">
                   <option value="en">English</option>
                   <option value="ru">Русский</option>
                   <option value="by">Беларуская</option>
                 </select>
                 <select id="page-size">
-                  <option value="orig">Original</option>
+                  <option value="orig" data-text="originalSizeOption">Original</option>
                   <option value="w-600" selected>100%</option>
                   <option value="w-300">50%</option>
                 </select>
-                <a id="download"><button class="btn" id="download-button">Download</button></a>
+                <a id="download"><button class="btn" id="download-button" data-text="downloadButton">Download</button></a>
               </div>
             </div>
             <div class="fd-c gap-10 zi-1 go-to-page-section">
+              <p class="title" data-text="findPageTitle">Find page</p>
               <form id="go-to-page-form">
-                <input type="number" placeholder="Page Number" class="page-input"></input>
-                <button id="go-to-page-button" class="btn" type="submit">Go to</button>
+                <input type="number" placeholder="Page Number" class="page-input" data-placeholder="pageInput"></input>
+                <button id="go-to-page-button" class="btn" type="submit" data-text="goToPageButton">Go to</button>
               </form>
             </div>
           </div>

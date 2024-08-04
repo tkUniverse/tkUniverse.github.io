@@ -91,6 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
   } else {
     sketchVerButton.textContent = 'Sketch';
   }
+  changeUILanguage(pagesInfo.currentLanguage);
   update();
 });
 
@@ -111,6 +112,7 @@ let isToolsShown = false;
 
 languageSelect.addEventListener('change', function () {
   pagesInfo.currentLanguage = languageSelect.value;
+  changeUILanguage(pagesInfo.currentLanguage);
   update();
 });
 
@@ -200,6 +202,25 @@ sketchVerButton.addEventListener('click', function() {
     pagesInfo.isSketch = true;
     sketchVerButton.textContent = 'Return';
   }
+  changeUILanguage(pagesInfo.currentLanguage);
   update();
 });
+
+function changeUILanguage(lang) {
+  const textElements = document.querySelectorAll('[data-text]');
+  textElements.forEach(element => {
+      const key = element.getAttribute('data-text');
+      if (texts[lang] && texts[lang][key]) {
+          element.textContent = texts[lang][key];
+      }
+  });
+
+  const placeholderElements = document.querySelectorAll('[data-placeholder]');
+  placeholderElements.forEach(element => {
+      const key = element.getAttribute('data-placeholder');
+      if (texts[lang] && texts[lang][key]) {
+          element.setAttribute('placeholder', texts[lang][key]);
+      }
+  });
+};
 
