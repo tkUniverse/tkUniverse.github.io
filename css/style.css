@@ -168,12 +168,16 @@ footer {
   align-self: flex-end;
 }
 
+.page-space {
+  margin: 20px;
+}
+
 @media only screen and (max-width: 700px) {
   .page, .blurred-page {
     max-width: 100%;
   }
 
-  body {
+  body, .page-space {
     margin: 1rem;
   }
 
@@ -308,4 +312,5 @@ a.btn {
 
 .fd-c.gap-10.navigation.zi-1 .btn {
   width: 100%;
+  text-align: center;
 }

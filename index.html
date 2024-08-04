@@ -21,47 +21,49 @@
     <button onclick="changeTab(2)" class="btn">Archive</button>
   </div>
   <div id="tab-1" class="tab content ">
-    <div class="image-container">
-      <div class="on-img-nav fd-r zi-2">
-        <button onclick="changePage(pagesInfo.pageNumber, 'previous')"></button>
-        <button onclick="changePage(pagesInfo.pageNumber, 'next')"></button>
+    <div class="page-space">
+      <div class="image-container">
+        <div class="on-img-nav fd-r zi-2">
+          <button onclick="changePage(pagesInfo.pageNumber, 'previous')"></button>
+          <button onclick="changePage(pagesInfo.pageNumber, 'next')"></button>
+        </div>
+        <img src="" class="page justify-center w-600" alt="Comic Page"></img>
+        <img src="" class="blurred-page justify-center w-600" alt="Blurred Comic Page"></img>
       </div>
-      <img src="" class="page justify-center w-600" alt="Comic Page"></img>
-      <img src="" class="blurred-page justify-center w-600" alt="Blurred Comic Page"></img>
-    </div>
-    <div class="fd-c gap-10 navigation zi-1">
-      <div class="fd-r justify-center gap-5">
-        <button onclick="changePage(pagesInfo.pageNumber, 'first')" class="btn">First</button>
-        <button onclick="changePage(pagesInfo.pageNumber, 'previous')" class="btn">Previous</button>
-        <p class="page-number col-white btn">pageNumber</p>
-        <button onclick="changePage(pagesInfo.pageNumber, 'next')" class="btn">Next</button>
-        <button onclick="changePage(pagesInfo.pageNumber, 'last')" class="btn">Last</button>
-      </div>
-      <div class="fd-c gap-10">
-        <button class="btn" id="tools-btn">Tools</button>
-        <div id="tools-container" class="gap-10 fd-c hidden">
-          <div class="page-options-section">
-            <div>
-              <button id="sketch-ver-button" class="btn">Sketch</button>
-              <a id="speachless-ver-button" class="btn hidden" target="_blank">Speachless</a>
-              <select id="language">
-                <option value="en">English</option>
-                <option value="ru">Russian</option>
-                <option value="by">Belarusian</option>
-              </select>
-              <select id="page-size">
-                <option value="orig">Original</option>
-                <option value="w-600" selected>100%</option>
-                <option value="w-300">50%</option>
-              </select>
-              <a id="download"><button class="btn" id="download-button">Download</button></a>
+      <div class="fd-c gap-10 navigation zi-1">
+        <div class="fd-r justify-center gap-5">
+          <button onclick="changePage(pagesInfo.pageNumber, 'first')" class="btn">First</button>
+          <button onclick="changePage(pagesInfo.pageNumber, 'previous')" class="btn">Previous</button>
+          <p class="page-number col-white btn">pageNumber</p>
+          <button onclick="changePage(pagesInfo.pageNumber, 'next')" class="btn">Next</button>
+          <button onclick="changePage(pagesInfo.pageNumber, 'last')" class="btn">Last</button>
+        </div>
+        <div class="fd-c gap-10">
+          <button class="btn" id="tools-btn">Tools</button>
+          <div id="tools-container" class="gap-10 fd-c hidden">
+            <div class="page-options-section">
+              <div>
+                <button id="sketch-ver-button" class="btn">Sketch</button>
+                <a id="speachless-ver-button" class="btn hidden" target="_blank">Speachless</a>
+                <select id="language">
+                  <option value="en">English</option>
+                  <option value="ru">Russian</option>
+                  <option value="by">Belarusian</option>
+                </select>
+                <select id="page-size">
+                  <option value="orig">Original</option>
+                  <option value="w-600" selected>100%</option>
+                  <option value="w-300">50%</option>
+                </select>
+                <a id="download"><button class="btn" id="download-button">Download</button></a>
+              </div>
             </div>
-          </div>
-          <div class="fd-c gap-10 zi-1 go-to-page-section">
-            <form id="go-to-page-form">
-              <input type="number" placeholder="Page Number" class="page-input"></input>
-              <button id="go-to-page-button" class="btn" type="submit">Go to</button>
-            </form>
+            <div class="fd-c gap-10 zi-1 go-to-page-section">
+              <form id="go-to-page-form">
+                <input type="number" placeholder="Page Number" class="page-input"></input>
+                <button id="go-to-page-button" class="btn" type="submit">Go to</button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
@@ -71,8 +73,5 @@
   <div id="tab-2" class="tab content hidden">
     
   </div>
-  <footer>
-    <a href="https://twokinds.keenspot.com/license/" target="_blank"><p class="col-white ta-c hidden">TWOKINDS, its logo, and all related characters are copyright © 2024 Thomas J. Fischbach. All rights reserved.</p></a>
-  </footer>
 </body>
 </html>
