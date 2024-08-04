@@ -77,7 +77,6 @@ let update = function () {
   pagesInfo.currentLanguage = languageSelect.value;
   pagesInfo.pageSize = sizeSelect.value;
   changePageSize();
-  console.log(pagesInfo);
 };
 
 document.addEventListener('DOMContentLoaded', function () {
