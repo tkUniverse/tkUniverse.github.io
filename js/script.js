@@ -2,7 +2,8 @@ let pagesInfo = {
   pageNumber: 0,
   pageSize: 'w-600',
   currentLanguage: 'en',
-  isSketch: false
+  isSketch: false,
+  ifFirstTime: true
 };
 
 const totalPages = 1235;
@@ -82,6 +83,8 @@ let update = function () {
 
 document.addEventListener('DOMContentLoaded', function () {
   let cookie = getCookie('pagesInfo');
+  let userLang = navigator.language || navigator.userLanguage;
+
   if (cookie) {
     pagesInfo = JSON.parse(cookie);
   } else {
@@ -92,7 +95,18 @@ document.addEventListener('DOMContentLoaded', function () {
   } else {
     sketchVerButton.textContent = 'Sketch';
   }
-  changeUILanguage(pagesInfo.currentLanguage);
+  if (pagesInfo.ifFirstTime) {
+    if (texts.hasOwnProperty(userLang)) {
+      pagesInfo.currentLanguage = userLang;
+      changeUILanguage(userLang);
+    } else {
+      pagesInfo.currentLanguage = 'en';
+      changeUILanguage(currentLanguage);
+    }
+    pagesInfo.ifFirstTime = false;
+  } else {
+    changeUILanguage(pagesInfo.currentLanguage);
+  }
   update();
 });
 
