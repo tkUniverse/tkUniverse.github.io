@@ -101,11 +101,13 @@ document.addEventListener('DOMContentLoaded', function () {
       changeUILanguage(userLang);
     } else {
       pagesInfo.currentLanguage = 'en';
-      changeUILanguage(currentLanguage);
+      changeUILanguage(pagesInfo.currentLanguage);
     }
+    languageSelect.value = pagesInfo.currentLanguage;
     pagesInfo.ifFirstTime = false;
   } else {
     changeUILanguage(pagesInfo.currentLanguage);
+    languageSelect.value = pagesInfo.currentLanguage;
   }
   update();
 });
