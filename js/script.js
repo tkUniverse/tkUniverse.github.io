@@ -2,8 +2,8 @@ let pagesInfo = {
   pageNumber: 0,
   pageSize: 'w-600',
   currentLanguage: 'en',
-  isSketch: false,
-  ifFirstTime: true
+  isFirstTime: true,
+  isSketch: false
 };
 
 const totalPages = 1235;
@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
   } else {
     sketchVerButton.textContent = 'Sketch';
   }
-  if (pagesInfo.ifFirstTime) {
+  if (pagesInfo.isFirstTime) {
     if (texts.hasOwnProperty(userLang)) {
       pagesInfo.currentLanguage = userLang;
       changeUILanguage(userLang);
@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function () {
       changeUILanguage(pagesInfo.currentLanguage);
     }
     languageSelect.value = pagesInfo.currentLanguage;
-    pagesInfo.ifFirstTime = false;
+    pagesInfo.isFirstTime = false;
   } else {
     changeUILanguage(pagesInfo.currentLanguage);
     languageSelect.value = pagesInfo.currentLanguage;
