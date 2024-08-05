@@ -1,10 +1,11 @@
 let pagesInfo = {
   pageNumber: 0,
-  totalPages: 1235,
   pageSize: 'w-600',
   currentLanguage: 'en',
   isSketch: false
 };
+
+const totalPages = 1235;
 
 function getCookie(name) {
   let matches = document.cookie.match(new RegExp(
@@ -106,7 +107,7 @@ let goToForm = document.getElementById('go-to-page-form');
 let languageSelect = document.getElementById('language');
 let sizeSelect = document.getElementById('page-size');
 let downloadButton = document.getElementById('download');
-let lastPageNumber = pagesInfo.totalPages;
+let lastPageNumber = totalPages;
 let toolsButton = document.getElementById('tools-btn');
 let isToolsShown = false;
 
