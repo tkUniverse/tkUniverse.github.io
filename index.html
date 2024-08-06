@@ -33,7 +33,7 @@
         <img src="" class="blurred-page justify-center w-600" alt="Blurred Comic Page"></img>
       </div>
       <div class="fd-c gap-10 navigation zi-1">
-        <div class="fd-r justify-center gap-5">
+        <div class="fd-r justify-center gap-5 page-switchers">
           <button onclick="changePage(pagesInfo.pageNumber, 'first')" class="btn" data-text="firstPageButton">First</button>
           <button onclick="changePage(pagesInfo.pageNumber, 'previous')" class="btn" data-text="previousPageButton">Previous</button>
           <p class="page-number col-white btn">pageNumber</p>
@@ -65,6 +65,7 @@
                   <option value="w-300">50%</option>
                 </select>
                 <a id="download"><button class="btn" id="download-button" data-text="downloadButton">Download</button></a>
+                <button class="btn" id="remove-glow" data-text="removePageGlowButton">Disable page glow</button>
               </div>
             </div>
             <div class="fd-c gap-10 zi-1 go-to-page-section">

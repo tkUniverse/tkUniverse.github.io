@@ -3,7 +3,8 @@ let pagesInfo = {
   pageSize: 'w-600',
   currentLanguage: 'en',
   isFirstTime: true,
-  isSketch: false
+  isSketch: false,
+  isGlow: true
 };
 
 const totalPages = 1235;
@@ -50,16 +51,12 @@ let update = function () {
   let sketchUrl = `https://tkuniverse.space/sketch/pages/${pagesInfo.pageNumber + 1}.png`;
   let currentUrl = pagesInfo.isSketch ? sketchUrl : imgUrl;
 
-  if (pagesInfo.pageNumber < 857) {
-    sketchVerButton.disabled = true;
-  } else {
-    sketchVerButton.disabled = false;
-  }
+  sketchVerButton.disabled = pagesInfo.pageNumber < 857;
 
   page.src = currentUrl;
   blurredPage.src = currentUrl;
   downloadButton.href = currentUrl;
-  downloadButton.download = `Twokinds Universe - ${pagesInfo.pageNumber + 1}${pagesInfo.currentLanguage}.png`;
+  downloadButton.download = `Twokinds Universe - ${pagesInfo.currentLanguage}${pagesInfo.pageNumber + 1}.png`;
 
   page.onerror = function () {
     this.onerror = null;
@@ -75,6 +72,7 @@ let update = function () {
   setCookie('pagesInfo', JSON.stringify(pagesInfo));
   pageCounter.textContent = `${pagesInfo.pageNumber + 1}/${lastPageNumber}`;
   changePageSize();
+  removeGlow();
 };
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -96,7 +94,9 @@ document.addEventListener('DOMContentLoaded', function () {
     pagesInfo.pageNumber = pageParam;
   }
 
-  sketchVerButton.textContent = pagesInfo.isSketch ? 'Return' : 'Sketch';
+  sketchVerButton.textContent = pagesInfo.isSketch 
+    ? texts[pagesInfo.currentLanguage].sketchVerButtonAlt 
+    : texts[pagesInfo.currentLanguage].sketchVerButton;
 
   if (pagesInfo.isFirstTime) {
     if (texts.hasOwnProperty(userLang)) {
@@ -197,7 +197,9 @@ let changePageSize = function () {
 
 sketchVerButton.addEventListener('click', function() {
   pagesInfo.isSketch = !pagesInfo.isSketch;
-  sketchVerButton.textContent = pagesInfo.isSketch ? 'Return' : 'Sketch';
+  sketchVerButton.textContent = pagesInfo.isSketch 
+    ? texts[pagesInfo.currentLanguage].sketchVerButtonAlt 
+    : texts[pagesInfo.currentLanguage].sketchVerButton;
   update();
 });
 
@@ -223,3 +225,17 @@ function getQueryParam(param, url = window.location.href) {
   const urlObj = new URL(url);
   return urlObj.searchParams.get(param);
 }
+
+document.getElementById('remove-glow').addEventListener('click', function() {
+  pagesInfo.isGlow = !pagesInfo.isGlow;
+  document.getElementById('remove-glow').textContent = pagesInfo.isGlow ? texts[pagesInfo.currentLanguage].removePageGlowButton : texts[pagesInfo.currentLanguage].removePageGlowButtonAlt
+  update();
+});
+
+let removeGlow = function () {
+  if (pagesInfo.isGlow) {
+    blurredPage.classList.remove('hidden');
+  } else {
+    blurredPage.classList.add('hidden');
+  }
+};

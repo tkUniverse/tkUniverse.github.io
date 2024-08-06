@@ -12,7 +12,9 @@ const texts = {
         sketchVerButtonAlt: 'Return',
         originalSizeOption: 'Original',
         pageOptionsTitle: 'Page options',
-        findPageTitle: 'Find page'
+        findPageTitle: 'Find page',
+        removePageGlowButton: 'Disable page glow',
+        removePageGlowButtonAlt: 'Enable page glow'
     },
     
     ru: {
@@ -28,7 +30,9 @@ const texts = {
         sketchVerButtonAlt: 'Вернуться',
         originalSizeOption: 'Оригинал',
         pageOptionsTitle: 'Настройки страницы',
-        findPageTitle: 'Найти страницу'
+        findPageTitle: 'Найти страницу',
+        removePageGlowButton: 'Отключить подсветку страницы',
+        removePageGlowButtonAlt: 'Включить подсветку страницы'
     },
     
     be: {
@@ -44,7 +48,9 @@ const texts = {
         sketchVerButtonAlt: 'Вярнуцца',
         originalSizeOption: 'Арыгінал',
         pageOptionsTitle: "Опцыі старонкі",
-        findPageTitle: "Знайсці старонку"
+        findPageTitle: "Знайсці старонку",
+        removePageGlowButton: 'Адключыць падсвятленне старонкі',
+        removePageGlowButtonAlt: 'Уключыць падсвятленне старонкі'
     },
 
     it: {
@@ -60,7 +66,9 @@ const texts = {
         sketchVerButtonAlt: 'Ritorna',
         originalSizeOption: 'Originale',
         pageOptionsTitle: 'Opzioni di pagina',
-        findPageTitle: 'Trova pagina'
+        findPageTitle: 'Trova pagina',
+        removePageGlowButton: 'Disattiva bagliore pagina',
+        removePageGlowButtonAlt: 'Attiva bagliore pagina'
     },
     
     fr: {
@@ -76,7 +84,9 @@ const texts = {
         sketchVerButtonAlt: 'Retour',
         originalSizeOption: 'Original',
         pageOptionsTitle: 'Options de page',
-        findPageTitle: 'Trouver page'
+        findPageTitle: 'Trouver page',
+        removePageGlowButton: 'Désactiver la lueur de la page',
+        removePageGlowButtonAlt: 'Activer la lueur de la page'
     },
     
     es: {
@@ -92,7 +102,9 @@ const texts = {
         sketchVerButtonAlt: 'Regresar',
         originalSizeOption: 'Original',
         pageOptionsTitle: 'Opciones de página',
-        findPageTitle: 'Encontrar página'
+        findPageTitle: 'Encontrar página',
+        removePageGlowButton: 'Desactivar brillo de la página',
+        removePageGlowButtonAlt: 'Activar brillo de la página'
     },
     
     de: {
@@ -108,7 +120,9 @@ const texts = {
         sketchVerButtonAlt: 'Zurück',
         originalSizeOption: 'Original',
         pageOptionsTitle: 'Seitenoptionen',
-        findPageTitle: 'Seite finden'
+        findPageTitle: 'Seite finden',
+        removePageGlowButton: 'Seitenleuchten deaktivieren',
+        removePageGlowButtonAlt: 'Seitenleuchten aktivieren'
     },
 
     pt: {
@@ -124,7 +138,9 @@ const texts = {
         sketchVerButtonAlt: 'Voltar',
         originalSizeOption: 'Original',
         pageOptionsTitle: 'Opções de página',
-        findPageTitle: 'Encontrar página'
+        findPageTitle: 'Encontrar página',
+        removePageGlowButton: 'Desativar brilho da página',
+        removePageGlowButtonAlt: 'Ativar brilho da página'
     },
 
     pl: {
@@ -140,7 +156,9 @@ const texts = {
         sketchVerButtonAlt: 'Powrót',
         originalSizeOption: 'Oryginalny',
         pageOptionsTitle: 'Opcje strony',
-        findPageTitle: 'Znajdź stronę'
+        findPageTitle: 'Znajdź stronę',
+        removePageGlowButton: 'Wyłącz podświetlenie strony',
+        removePageGlowButtonAlt: 'Włącz podświetlenie strony'
     },
 
     cs: {
@@ -156,6 +174,8 @@ const texts = {
         sketchVerButtonAlt: 'Zpět',
         originalSizeOption: 'Původní',
         pageOptionsTitle: 'Možnosti stránky',
-        findPageTitle: 'Najít stránku'
+        findPageTitle: 'Najít stránku',
+        removePageGlowButton: 'Vypnout záři stránky',
+        removePageGlowButtonAlt: 'Zapnout záři stránky'
     }    
 };

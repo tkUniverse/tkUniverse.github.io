@@ -170,6 +170,7 @@ footer {
 
 .page-space {
   margin: 20px;
+  width: 600px;
 }
 
 @media only screen and (max-width: 700px) {
@@ -179,6 +180,7 @@ footer {
 
   body, .page-space {
     margin: 1rem;
+    width: auto;
   }
 
   .on-img-nav {
@@ -203,7 +205,7 @@ footer {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 100%;
+    width: 100% !important;
   }
 
   .navigation {
@@ -212,13 +214,18 @@ footer {
   }
 
   .btn {
-    width: 100%;
-    padding: 10px 0;
-    text-align: center;
+    padding: 0.625rem 1.25rem;
+    width: auto;
   }
 
   #tab-2 {
     grid-template-columns: auto auto auto !important;
+  }
+
+  .page-switchers .btn {
+    width: auto;
+    padding: 10px 5px;
+    text-align: center;
   }
 }
 
@@ -297,7 +304,7 @@ a.btn {
 }
 
 .orig {
-  width: 100%;
+  width: auto;
 }
 
 .w-300 {
@@ -308,7 +315,7 @@ a.btn {
   margin-top: 5px;
 }
 
-.fd-c.gap-10.navigation.zi-1 .btn {
+.page-switchers .btn {
   width: 100%;
   text-align: center;
 }
