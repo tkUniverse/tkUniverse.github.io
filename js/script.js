@@ -240,4 +240,3 @@ function changeUILanguage(lang) {
       }
   });
 };
-
