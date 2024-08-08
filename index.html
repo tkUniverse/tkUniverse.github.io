@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="invert">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,71 +18,79 @@
   <meta name="description" content="Explore Everything About Twokinds Webcomic in One Place! Discover comic, characters, gallery, and more. Join the Twokinds Universe!">
 </head>
 <body>
-  <div class="hidden">
-    <button onclick="changeTab(1)" class="btn">Pages</button>
-    <button onclick="changeTab(2)" class="btn">Archive</button>
-  </div>
-  <div id="tab-1" class="tab content">
-    <div class="page-space">
-      <div class="image-container">
-        <div class="on-img-nav fd-r zi-2">
-          <button onclick="changePage(pagesInfo.pageNumber, 'previous')"></button>
-          <button onclick="changePage(pagesInfo.pageNumber, 'next')"></button>
-        </div>
-        <img src="" class="page justify-center w-600" alt="Comic Page"></img>
-        <img src="" class="blurred-page justify-center w-600" alt="Blurred Comic Page"></img>
+  <main>
+    <aside class="side-bar">
+      <div class="justify-center">
+        <img src="img/space.png" class="banner">
+        <a href="/"><img src="img/full-logo.svg" class="logo"></a>
       </div>
-      <div class="fd-c gap-10 navigation zi-1">
-        <div class="fd-r justify-center gap-5 page-switchers">
-          <button onclick="changePage(pagesInfo.pageNumber, 'first')" class="btn" data-text="firstPageButton">First</button>
-          <button onclick="changePage(pagesInfo.pageNumber, 'previous')" class="btn" data-text="previousPageButton">Previous</button>
-          <p class="page-number col-white btn">pageNumber</p>
-          <button onclick="changePage(pagesInfo.pageNumber, 'next')" class="btn" data-text="nextPageButton">Next</button>
-          <button onclick="changePage(pagesInfo.pageNumber, 'last')" class="btn" data-text="lastPageButton">Last</button>
+      <a href="/"><button class="btn"><img src="img/placeholder.png" style="height: 50px;">Page viewer</button></a>
+      <a href="/"><button class="btn"><img src="img/placeholder.png" style="height: 50px;">Archive</button></a>
+      <a href="/"><button class="btn"><img src="img/placeholder.png" style="height: 50px;">Gallery</button></a>
+      <a href="/"><button class="btn"><img src="img/placeholder.png" style="height: 50px;">Characters</button></a>
+      <a href="/"><button class="btn"><img src="img/placeholder.png" style="height: 50px;">About</button></a>
+      <a href="https://discord.gg/twokinds" target="_blank"><button class="btn"><img src="img/placeholder.png" style="height: 50px;">Discord</button></a>
+      <a href="https://twokinds.keenspot.com/license/" target="_blank"><p>TWOKINDS, its logo, and all related characters are copyright © 2024 Thomas J. Fischbach. All rights reserved.</p></a>
+    </aside>
+    <div class="placeholder"></div>
+    <div class="content">
+      <div class="page-space">
+        <div class="image-container">
+          <div class="on-img-nav fd-r zi-2">
+            <button onclick="changePage(pagesInfo.pageNumber, 'previous')"></button>
+            <button onclick="changePage(pagesInfo.pageNumber, 'next')"></button>
+          </div>
+          <img class="page justify-center w-600" alt="Comic Page"></img>
+          <img class="blurred-page justify-center w-600" alt="Blurred Comic Page"></img>
         </div>
-        <div class="fd-c gap-10">
-          <button class="btn" id="tools-btn" data-text="toolsButton">Tools</button>
-          <div id="tools-container" class="gap-10 fd-c hidden">
-            <div class="page-options-section">
-              <p class="title" data-text="pageOptionsTitle">Page options</p>
-              <div>
-                <button id="sketch-ver-button" class="btn" data-text="sketchVerButton">Sketch</button>
-                <a id="speachless-ver-button" class="btn hidden" target="_blank" data-text="">Speachless</a>
-                <select id="language">
-                  <option value="be">Беларуская</option>
-                  <option value="cs">Čeština</option>
-                  <option value="de">Deutsch</option>
-                  <option value="en">English</option>
-                  <option value="es">Español</option>
-                  <option value="fr">Français</option>
-                  <option value="it">Italiano</option>
-                  <option value="pl">Polski</option>
-                  <option value="ru">Русский</option>
-                </select>
-                <select id="page-size">
-                  <option value="orig" data-text="originalSizeOption">Original</option>
-                  <option value="w-600" selected>100%</option>
-                  <option value="w-300">50%</option>
-                </select>
-                <a id="download"><button class="btn" id="download-button" data-text="downloadButton">Download</button></a>
-                <button class="btn" id="remove-glow" data-text="removePageGlowButton">Disable page glow</button>
+        <div class="fd-c gap-10 navigation zi-1 invert">
+          <div class="fd-r justify-center gap-5 page-switchers">
+            <button onclick="changePage(pagesInfo.pageNumber, 'first')" class="btn" data-text="firstPageButton">First</button>
+            <button onclick="changePage(pagesInfo.pageNumber, 'previous')" class="btn" data-text="previousPageButton">Previous</button>
+            <p class="page-number col-white btn">pageNumber</p>
+            <button onclick="changePage(pagesInfo.pageNumber, 'next')" class="btn" data-text="nextPageButton">Next</button>
+            <button onclick="changePage(pagesInfo.pageNumber, 'last')" class="btn" data-text="lastPageButton">Last</button>
+          </div>
+          <div class="fd-c gap-10">
+            <button class="btn" id="tools-btn" data-text="toolsButton" onclick="toggleVisibility(document.getElementById('tools-container'))">Tools</button>
+            <div id="tools-container" class="gap-10 fd-c invisible closable">
+              <div class="page-options-section">
+                <p class="title" data-text="pageOptionsTitle">Page options</p>
+                <div>
+                  <button id="sketch-ver-button" class="btn" data-text="sketchVerButton">Sketch</button>
+                  <a id="speachless-ver-button" class="btn hidden" target="_blank" data-text="">Speachless</a>
+                  <select id="language">
+                    <option value="be">Беларуская</option>
+                    <option value="cs">Čeština</option>
+                    <option value="de">Deutsch</option>
+                    <option value="en">English</option>
+                    <option value="es">Español</option>
+                    <option value="fr">Français</option>
+                    <option value="it">Italiano</option>
+                    <option value="pl">Polski</option>
+                    <option value="ru">Русский</option>
+                  </select>
+                  <select id="page-size">
+                    <option value="orig" data-text="originalSizeOption">Original</option>
+                    <option value="w-600" selected>100%</option>
+                    <option value="w-300">50%</option>
+                  </select>
+                  <a id="download"><button class="btn" id="download-button" data-text="downloadButton">Download</button></a>
+                  <button class="btn" id="remove-glow" data-text="removePageGlowButton">Disable page glow</button>
+                  <button id="theme-toggle" class="btn">Light theme</button>
+                </div>
               </div>
-            </div>
-            <div class="fd-c gap-10 zi-1 go-to-page-section">
-              <p class="title" data-text="findPageTitle">Find page</p>
-              <form id="go-to-page-form">
-                <input type="number" placeholder="Page Number" class="page-input" data-placeholder="pageInput"></input>
-                <button id="go-to-page-button" class="btn" type="submit" data-text="goToPageButton">Go to</button>
-              </form>
+              <div class="fd-c gap-10 zi-1 go-to-page-section">
+                <p class="title" data-text="findPageTitle">Find page</p>
+                <form id="go-to-page-form">
+                  <input type="number" placeholder="Page Number" class="page-input" data-placeholder="pageInput"></input>
+                  <button id="go-to-page-button" class="btn" type="submit" data-text="goToPageButton">Go to</button>
+                </form>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-  
-  <div id="tab-2" class="tab content hidden">
-    
-  </div>
+      </div</div>
+  </main>
 </body>
 </html>

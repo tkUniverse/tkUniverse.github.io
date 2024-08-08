@@ -218,10 +218,6 @@ footer {
     width: auto;
   }
 
-  #tab-2 {
-    grid-template-columns: auto auto auto !important;
-  }
-
   .page-switchers .btn {
     width: auto;
     padding: 10px 5px;
@@ -293,12 +289,6 @@ a.btn {
   filter: brightness(50%);
 }
 
-#tab-2 {
-  display: inline-grid;
-  grid-template-columns: auto auto auto auto auto;
-  gap: 10px;
-}
-
 .w-600 {
   width: 600px;
 }
@@ -319,3 +309,74 @@ a.btn {
   width: 100%;
   text-align: center;
 }
+
+body {
+  transition: background-color 0.5s, color 0.5s;
+}
+
+.light-theme {
+  background-color: #E1DFDE;
+  color: #000000;
+}
+
+.dark-theme {
+  background-color: #1e2021;
+  color: #ffffff;
+}
+
+.closable {
+  opacity: 1;
+  overflow: hidden !important;
+  transition: opacity 0.3s ease, max-height 0.3s ease;
+}
+
+.closable.invisible {
+  opacity: 0;
+  max-height: 0;
+}
+
+main {
+  display: flex;
+  justify-content: space-between;
+}
+
+main aside {
+  background-color: #2b2d2e;
+  width: 300px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  max-height: 100%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  /* border-radius: 0 15px 15px 0; */
+  border-radius: 15px;
+  margin: 20px;
+}
+
+.logo {
+  height: 70px;
+  position: absolute;
+  z-index: 1000;
+}
+
+.placeholder {
+  width: 300px;
+}
+
+a:link, a:visited, a:hover, a:active {
+  text-decoration: none;
+}
+
+.banner {
+  border-radius: 15px 15px 0 0;
+  width: 300px;
+}
+
+/* .invert {
+  filter: invert(1);
+}
+
+.invert img {
+  filter: invert(1);
+} */
