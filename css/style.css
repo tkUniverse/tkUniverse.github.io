@@ -314,16 +314,6 @@ body {
   transition: background-color 0.5s, color 0.5s;
 }
 
-.light-theme {
-  background-color: #E1DFDE;
-  color: #000000;
-}
-
-.dark-theme {
-  background-color: #1e2021;
-  color: #ffffff;
-}
-
 .closable {
   opacity: 1;
   overflow: hidden !important;
@@ -332,36 +322,40 @@ body {
 
 .closable.invisible {
   opacity: 0;
-  max-height: 0;
+  height: 0; 
 }
 
 main {
   display: flex;
   justify-content: space-between;
+  margin: 20px;
 }
 
-main aside {
+.side-bar {
   background-color: #2b2d2e;
   width: 300px;
   z-index: 1000;
   display: flex;
   flex-direction: column;
   position: fixed;
-  max-height: 100%;
+  height: calc(100vh - 40px);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  /* border-radius: 0 15px 15px 0; */
   border-radius: 15px;
-  margin: 20px;
+  box-sizing: border-box;
 }
 
 .logo {
-  height: 70px;
-  position: absolute;
-  z-index: 1000;
+  position: absolute; 
+  top: 50%; 
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  max-width: 100px; 
 }
 
-.placeholder {
+.side-bar-placeholder {
   width: 300px;
+  height: calc(100vh - 40px);
+  box-sizing: border-box;
 }
 
 a:link, a:visited, a:hover, a:active {
@@ -369,14 +363,53 @@ a:link, a:visited, a:hover, a:active {
 }
 
 .banner {
-  border-radius: 15px 15px 0 0;
-  width: 300px;
+  border-radius: 15px;
+  width: 100%; 
+  height: auto;
 }
 
-/* .invert {
-  filter: invert(1);
+.side-bar-banner {
+  position: relative; 
+  width: 100%; 
+  height: auto; 
+  text-align: center; 
 }
 
-.invert img {
-  filter: invert(1);
-} */
+.license p {
+  color: rgb(111, 111, 111);
+  transition: color 0.3s;
+}
+.license p:hover {
+  color: white;
+}
+
+.content-404, .content-404 h1, .content-cs, .content-cs h1 {
+  gap: 10px;
+  margin: 0;
+}
+
+.side-bar-buttons {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  gap: 10px;
+  flex-grow: 1;
+}
+
+.side-bar-buttons .btn {
+  text-align: left;
+  width: 100%;
+}
+
+.side-bar-content {
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.license {
+  margin: auto 20px 20px 20px;
+  text-align: center;
+  font-size: 12px;
+}

@@ -20,19 +20,23 @@
 <body>
   <main>
     <aside class="side-bar">
-      <div class="justify-center">
+      <div class="side-bar-banner">
         <img src="img/space.png" class="banner">
-        <a href="/"><img src="img/full-logo.svg" class="logo"></a>
+        <a href="/"><img src="img/logo.svg" class="logo"></a>
       </div>
-      <a href="/"><button class="btn"><img src="img/placeholder.png" style="height: 50px;">Page viewer</button></a>
-      <a href="/"><button class="btn"><img src="img/placeholder.png" style="height: 50px;">Archive</button></a>
-      <a href="/"><button class="btn"><img src="img/placeholder.png" style="height: 50px;">Gallery</button></a>
-      <a href="/"><button class="btn"><img src="img/placeholder.png" style="height: 50px;">Characters</button></a>
-      <a href="/"><button class="btn"><img src="img/placeholder.png" style="height: 50px;">About</button></a>
-      <a href="https://discord.gg/twokinds" target="_blank"><button class="btn"><img src="img/placeholder.png" style="height: 50px;">Discord</button></a>
-      <a href="https://twokinds.keenspot.com/license/" target="_blank"><p>TWOKINDS, its logo, and all related characters are copyright © 2024 Thomas J. Fischbach. All rights reserved.</p></a>
+      <div class="side-bar-content">
+        <div class="side-bar-buttons">
+          <a href="/"><button class="btn"><strong data-text="pageViewerButton">Page viewer</strong><p id="page-viewer-button" data-text="pageViewerButtonDesc">Continue: </p></button></a>
+          <a href="/coming-soon.html"><button class="btn"><strong data-text="archiveButton">Archive</strong><p data-text="archiveButtonDesc">Take a look on all pages</p></button></a>
+          <a href="/coming-soon.html"><button class="btn"><strong data-text="galleryButton">Gallery</strong><p data-text="galleryButtonDesc">All Twokinds related art</p></button></a>
+          <a href="/coming-soon.html"><button class="btn"><strong data-text="wikiButton">Wiki</strong><p data-text="wikiButtonDesc">Twokinds wiki</p></button></a>
+          <a href="/coming-soon.html"><button class="btn"><strong data-text="aboutButton">About</strong><p data-text="aboutButtonDesc">Information about comic and website</p></button></a>
+          <a href="https://discord.gg/twokinds" target="_blank"><button class="btn"><strong data-text="discordButton">Discord</strong><p data-text="discordButtonDesc">Fan Discord server</p></button></a>
+        </div>
+        <div class="license"><a href="https://twokinds.keenspot.com/license/" target="_blank"><p data-text="license">TWOKINDS, its logo, and all related characters are copyright © 2024 Thomas J. Fischbach. All rights reserved.</p></a></div>
+      </div>
     </aside>
-    <div class="placeholder"></div>
+    <div class="side-bar-placeholder"></div>
     <div class="content">
       <div class="page-space">
         <div class="image-container">
@@ -77,7 +81,6 @@
                   </select>
                   <a id="download"><button class="btn" id="download-button" data-text="downloadButton">Download</button></a>
                   <button class="btn" id="remove-glow" data-text="removePageGlowButton">Disable page glow</button>
-                  <button id="theme-toggle" class="btn">Light theme</button>
                 </div>
               </div>
               <div class="fd-c gap-10 zi-1 go-to-page-section">
@@ -90,7 +93,7 @@
             </div>
           </div>
         </div>
-      </div</div>
+      </div>
   </main>
 </body>
 </html>

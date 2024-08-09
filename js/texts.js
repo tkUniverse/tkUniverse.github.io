@@ -14,7 +14,20 @@ const texts = {
         pageOptionsTitle: 'Page options',
         findPageTitle: 'Find page',
         removePageGlowButton: 'Disable page glow',
-        removePageGlowButtonAlt: 'Enable page glow'
+        removePageGlowButtonAlt: 'Enable page glow',
+        license: 'TWOKINDS, its logo, and all related characters are copyright © 2024 Thomas J. Fischbach. All rights reserved.',
+        pageViewerButton: 'Page viewer',
+        pageViewerButtonDesc: '',
+        archiveButton: 'Archive',
+        archiveButtonDesc: '',
+        galleryButton: 'Gallery',
+        galleryButtonDesc: '',
+        wikiButton: 'Wiki',
+        wikiButtonDesc: '',
+        aboutButton: 'About',
+        aboutButtonDesc: '',
+        discordButton: 'Discord',
+        discordButtonDesc: '',
     },
     
     ru: {
