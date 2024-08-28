@@ -7,7 +7,7 @@ let pagesInfo = {
   isGlow: true
 };
 
-const totalPages = 1235;
+const totalPages = 1236;
 
 function getCookie(name) {
   let matches = document.cookie.match(new RegExp(
