@@ -17,17 +17,17 @@ const texts = {
         removePageGlowButtonAlt: 'Enable page glow',
         license: 'TWOKINDS, its logo, and all related characters are copyright © 2024 Thomas J. Fischbach. All rights reserved.',
         pageViewerButton: 'Page viewer',
-        pageViewerButtonDesc: '',
+        pageViewerButtonDesc: 'Continue reading: Page ',
         archiveButton: 'Archive',
-        archiveButtonDesc: '',
+        archiveButtonDesc: 'Browse through the comic pages archive',
         galleryButton: 'Gallery',
-        galleryButtonDesc: '',
+        galleryButtonDesc: 'Explore all Twokinds-related artwork',
         wikiButton: 'Wiki',
-        wikiButtonDesc: '',
+        wikiButtonDesc: 'Dive into the Twokinds universe with the community wiki',
         aboutButton: 'About',
-        aboutButtonDesc: '',
+        aboutButtonDesc: 'Learn more about the comic and this website',
         discordButton: 'Discord',
-        discordButtonDesc: '',
+        discordButtonDesc: 'Join the Twokinds fan community in Discord'
     },
     
     ru: {
@@ -45,7 +45,20 @@ const texts = {
         pageOptionsTitle: 'Настройки страницы',
         findPageTitle: 'Найти страницу',
         removePageGlowButton: 'Отключить подсветку страницы',
-        removePageGlowButtonAlt: 'Включить подсветку страницы'
+        removePageGlowButtonAlt: 'Включить подсветку страницы',
+        license: 'TWOKINDS, его логотип и все связанные с ним персонажи являются объектом авторского права © 2024 Томас Дж. Фишбах. Все права защищены.',
+        pageViewerButton: 'Просмотр страниц',
+        pageViewerButtonDesc: 'Продолжить чтение: Страница ',
+        archiveButton: 'Архив',
+        archiveButtonDesc: 'Просмотр архива страниц комиксов',
+        galleryButton: 'Галерея',
+        galleryButtonDesc: 'Изучите все произведения, связанные с Twokinds',
+        wikiButton: 'Вики',
+        wikiButtonDesc: 'Погрузитесь во вселенную Twokinds с помощью вики-сообщества',
+        aboutButton: 'О нас',
+        aboutButtonDesc: 'Узнайте больше о комиксе и этом сайте',
+        discordButton: 'Discord',
+        discordButtonDesc: 'Присоединяйтесь к фанатскому сообществу Twokinds в Discord'
     },
     
     be: {
@@ -63,7 +76,20 @@ const texts = {
         pageOptionsTitle: "Опцыі старонкі",
         findPageTitle: "Знайсці старонку",
         removePageGlowButton: 'Адключыць падсвятленне старонкі',
-        removePageGlowButtonAlt: 'Уключыць падсвятленне старонкі'
+        removePageGlowButtonAlt: 'Уключыць падсвятленне старонкі',
+        license: 'TWOKINDS, яго лагатып і ўсе звязаныя з ім персанажы абаронены аўтарскім правам © 2024 Томас Дж. Фішбах. Усе правы абаронены.',
+        pageViewerButton: 'Прагляд старонак',
+        pageViewerButtonDesc: 'Працягнуць чытанне: Старонка ',
+        archiveButton: 'Архіў',
+        archiveButtonDesc: 'Прагляд архіва старонак коміксаў',
+        galleryButton: 'Галерэя',
+        galleryButtonDesc: 'Вывучыць усе працы, звязаныя з Twokinds',
+        wikiButton: 'Вікі',
+        wikiButtonDesc: 'Пагрузіцеся ў сусвет Twokinds з дапамогай вікі-супольнасці',
+        aboutButton: 'Пра нас',
+        aboutButtonDesc: 'Даведайцеся больш пра комікс і гэты сайт',
+        discordButton: 'Discord',
+        discordButtonDesc: 'Далучайцеся да фанатскай супольнасці Twokinds у Discord'
     },
 
     it: {
@@ -81,7 +107,20 @@ const texts = {
         pageOptionsTitle: 'Opzioni di pagina',
         findPageTitle: 'Trova pagina',
         removePageGlowButton: 'Disattiva bagliore pagina',
-        removePageGlowButtonAlt: 'Attiva bagliore pagina'
+        removePageGlowButtonAlt: 'Attiva bagliore pagina',
+        license: 'TWOKINDS, il suo logo e tutti i personaggi correlati sono protetti da copyright © 2024 Thomas J. Fischbach. Tutti i diritti riservati.',
+        pageViewerButton: 'Visualizzatore di pagine',
+        pageViewerButtonDesc: 'Continua a leggere: Pagina ',
+        archiveButton: 'Archivio',
+        archiveButtonDesc: 'Sfoglia l\'archivio delle pagine del fumetto',
+        galleryButton: 'Galleria',
+        galleryButtonDesc: 'Esplora tutte le opere correlate a Twokinds',
+        wikiButton: 'Wiki',
+        wikiButtonDesc: 'Immergiti nell\'universo di Twokinds con la wiki della comunità',
+        aboutButton: 'Informazioni',
+        aboutButtonDesc: 'Scopri di più sul fumetto e su questo sito web',
+        discordButton: 'Discord',
+        discordButtonDesc: 'Unisciti alla comunità di fan di Twokinds su Discord'
     },
     
     fr: {
@@ -99,7 +138,20 @@ const texts = {
         pageOptionsTitle: 'Options de page',
         findPageTitle: 'Trouver page',
         removePageGlowButton: 'Désactiver la lueur de la page',
-        removePageGlowButtonAlt: 'Activer la lueur de la page'
+        removePageGlowButtonAlt: 'Activer la lueur de la page',
+        license: 'TWOKINDS, son logo et tous les personnages associés sont protégés par copyright © 2024 Thomas J. Fischbach. Tous droits réservés.',
+        pageViewerButton: 'Visionneuse de pages',
+        pageViewerButtonDesc: 'Continuer la lecture : Page ',
+        archiveButton: 'Archive',
+        archiveButtonDesc: 'Parcourir les pages d\'archive des bandes dessinées',
+        galleryButton: 'Galerie',
+        galleryButtonDesc: 'Explorez toutes les œuvres liées à Twokinds',
+        wikiButton: 'Wiki',
+        wikiButtonDesc: 'Plongez dans l\'univers de Twokinds avec le wiki communautaire',
+        aboutButton: 'À propos',
+        aboutButtonDesc: 'En savoir plus sur la bande dessinée et ce site',
+        discordButton: 'Discord',
+        discordButtonDesc: 'Rejoignez la communauté de fans de Twokinds sur Discord'
     },
     
     es: {
@@ -117,7 +169,20 @@ const texts = {
         pageOptionsTitle: 'Opciones de página',
         findPageTitle: 'Encontrar página',
         removePageGlowButton: 'Desactivar brillo de la página',
-        removePageGlowButtonAlt: 'Activar brillo de la página'
+        removePageGlowButtonAlt: 'Activar brillo de la página',
+        license: 'TWOKINDS, su logotipo y todos los personajes relacionados están protegidos por derechos de autor © 2024 Thomas J. Fischbach. Todos los derechos reservados.',
+        pageViewerButton: 'Visor de páginas',
+        pageViewerButtonDesc: 'Continuar leyendo: Página ',
+        archiveButton: 'Archivo',
+        archiveButtonDesc: 'Navegar por el archivo de páginas del cómic',
+        galleryButton: 'Galería',
+        galleryButtonDesc: 'Explora todas las obras relacionadas con Twokinds',
+        wikiButton: 'Wiki',
+        wikiButtonDesc: 'Sumérgete en el universo de Twokinds con la wiki comunitaria',
+        aboutButton: 'Acerca de',
+        aboutButtonDesc: 'Aprende más sobre el cómic y este sitio web',
+        discordButton: 'Discord',
+        discordButtonDesc: 'Únete a la comunidad de fans de Twokinds en Discord'
     },
     
     de: {
@@ -135,7 +200,20 @@ const texts = {
         pageOptionsTitle: 'Seitenoptionen',
         findPageTitle: 'Seite finden',
         removePageGlowButton: 'Seitenleuchten deaktivieren',
-        removePageGlowButtonAlt: 'Seitenleuchten aktivieren'
+        removePageGlowButtonAlt: 'Seitenleuchten aktivieren',
+        license: 'TWOKINDS, sein Logo und alle verwandten Charaktere sind urheberrechtlich geschützt © 2024 Thomas J. Fischbach. Alle Rechte vorbehalten.',
+        pageViewerButton: 'Seitenansicht',
+        pageViewerButtonDesc: 'Weiterlesen: Seite ',
+        archiveButton: 'Archiv',
+        archiveButtonDesc: 'Durchsuchen Sie das Comicseiten-Archiv',
+        galleryButton: 'Galerie',
+        galleryButtonDesc: 'Erkunden Sie alle Twokinds-bezogenen Kunstwerke',
+        wikiButton: 'Wiki',
+        wikiButtonDesc: 'Tauchen Sie ein in das Twokinds-Universum mit dem Community-Wiki',
+        aboutButton: 'Über',
+        aboutButtonDesc: 'Erfahren Sie mehr über den Comic und diese Website',
+        discordButton: 'Discord',
+        discordButtonDesc: 'Treten Sie der Twokinds-Fangemeinde bei Discord bei'
     },
 
     pt: {
@@ -153,7 +231,20 @@ const texts = {
         pageOptionsTitle: 'Opções de página',
         findPageTitle: 'Encontrar página',
         removePageGlowButton: 'Desativar brilho da página',
-        removePageGlowButtonAlt: 'Ativar brilho da página'
+        removePageGlowButtonAlt: 'Ativar brilho da página',
+        license: 'TWOKINDS, seu logotipo e todos os personagens relacionados são protegidos por direitos autorais © 2024 Thomas J. Fischbach. Todos os direitos reservados.',
+        pageViewerButton: 'Visualizador de Páginas',
+        pageViewerButtonDesc: 'Continuar a leitura: Página ',
+        archiveButton: 'Arquivo',
+        archiveButtonDesc: 'Navegue pelo arquivo de páginas de quadrinhos',
+        galleryButton: 'Galeria',
+        galleryButtonDesc: 'Explore todas as obras relacionadas ao Twokinds',
+        wikiButton: 'Wiki',
+        wikiButtonDesc: 'Mergulhe no universo Twokinds com o wiki da comunidade',
+        aboutButton: 'Sobre',
+        aboutButtonDesc: 'Saiba mais sobre o quadrinho e este site',
+        discordButton: 'Discord',
+        discordButtonDesc: 'Junte-se à comunidade de fãs de Twokinds no Discord'
     },
 
     pl: {
@@ -171,7 +262,20 @@ const texts = {
         pageOptionsTitle: 'Opcje strony',
         findPageTitle: 'Znajdź stronę',
         removePageGlowButton: 'Wyłącz podświetlenie strony',
-        removePageGlowButtonAlt: 'Włącz podświetlenie strony'
+        removePageGlowButtonAlt: 'Włącz podświetlenie strony',
+        license: 'TWOKINDS, jego logo i wszystkie powiązane postacie są chronione prawem autorskim © 2024 Thomas J. Fischbach. Wszelkie prawa zastrzeżone.',
+        pageViewerButton: 'Przeglądarka stron',
+        pageViewerButtonDesc: 'Kontynuuj czytanie: Strona ',
+        archiveButton: 'Archiwum',
+        archiveButtonDesc: 'Przeglądaj archiwum stron komiksów',
+        galleryButton: 'Galeria',
+        galleryButtonDesc: 'Przeglądaj wszystkie dzieła związane z Twokinds',
+        wikiButton: 'Wiki',
+        wikiButtonDesc: 'Zanurz się w świecie Twokinds za pomocą wiki społeczności',
+        aboutButton: 'O nas',
+        aboutButtonDesc: 'Dowiedz się więcej o komiksie i tej stronie',
+        discordButton: 'Discord',
+        discordButtonDesc: 'Dołącz do społeczności fanów Twokinds na Discordzie'
     },
 
     cs: {
@@ -189,6 +293,19 @@ const texts = {
         pageOptionsTitle: 'Možnosti stránky',
         findPageTitle: 'Najít stránku',
         removePageGlowButton: 'Vypnout záři stránky',
-        removePageGlowButtonAlt: 'Zapnout záři stránky'
+        removePageGlowButtonAlt: 'Zapnout záři stránky',
+        license: 'TWOKINDS, jeho logo a všechny související postavy jsou chráněny autorským právem © 2024 Thomas J. Fischbach. Všechna práva vyhrazena.',
+        pageViewerButton: 'Prohlížeč stránek',
+        pageViewerButtonDesc: 'Pokračovat ve čtení: Stránka ',
+        archiveButton: 'Archiv',
+        archiveButtonDesc: 'Procházejte archiv stránek komiksů',
+        galleryButton: 'Galerie',
+        galleryButtonDesc: 'Prozkoumejte všechna díla související s Twokinds',
+        wikiButton: 'Wiki',
+        wikiButtonDesc: 'Ponořte se do vesmíru Twokinds pomocí komunitního wiki',
+        aboutButton: 'O nás',
+        aboutButtonDesc: 'Zjistěte více o komiksu a této stránce',
+        discordButton: 'Discord',
+        discordButtonDesc: 'Připojte se ke komunitě fanoušků Twokinds na Discordu'
     }    
 };

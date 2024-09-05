@@ -7,7 +7,7 @@ let pagesInfo = {
   isGlow: true
 };
 
-const totalPages = 1235;
+const totalPages = 1236;
 
 function getCookie(name) {
   let matches = document.cookie.match(new RegExp(
@@ -44,6 +44,12 @@ let update = function () {
   const url = new URL(window.location.href);
   url.searchParams.set('p', pagesInfo.pageNumber + 1);
   url.searchParams.set('l', pagesInfo.currentLanguage);
+  if (pagesInfo.pageNumber >= 857) {
+    url.searchParams.set('s', pagesInfo.isSketch);
+  } else {
+    url.searchParams.delete('s', pagesInfo.isSketch);
+    pagesInfo.isSketch = false;
+  }
   window.history.replaceState({}, '', url.toString());
 
   document.querySelector('.image-container').classList.remove('page-error');
@@ -54,7 +60,11 @@ let update = function () {
 
   sketchVerButton.disabled = pagesInfo.pageNumber < 857;
 
-  document.getElementById('page-viewer-button').textContent = `Continue: ${pagesInfo.pageNumber + 1}`
+  document.getElementById('page-viewer-button').textContent = '';
+  document.querySelector('html').lang = pagesInfo.currentLanguage;
+  changeUILanguage(pagesInfo.currentLanguage);
+  document.querySelector('title').textContent = `Twokinds Universe - Page ${pagesInfo.pageNumber + 1}`;
+  document.getElementById('page-viewer-button').textContent = `${document.getElementById('page-viewer-button').textContent} ${pagesInfo.pageNumber + 1}`;
   page.src = currentUrl;
   blurredPage.src = currentUrl;
   downloadButton.href = currentUrl;
@@ -75,32 +85,55 @@ let update = function () {
   pageCounter.textContent = `${pagesInfo.pageNumber + 1}/${lastPageNumber}`;
   changePageSize();
   removeGlow();
+  updateButtonState();
 };
 
 document.addEventListener('DOMContentLoaded', function () {
-  let pageParam = parseInt(getQueryParam('p'), 10) - 1;
+  let pageParam = getQueryParam('p');
   let langParam = getQueryParam('l');
-
-  if (isNaN(pageParam) || pageParam < 0 || pageParam > totalPages) {
-    pageParam = null;
-  }
+  let isSketchParam = getQueryParam('s');
+  let urlHasParams = pageParam !== null || langParam !== null || isSketchParam !== null;
 
   let cookie = getCookie('pagesInfo');
-  let userLang = navigator.language || navigator.userLanguage;
-
+  
   if (cookie) {
-    pagesInfo = JSON.parse(cookie);
-  } else {
-    setCookie('pagesInfo', JSON.stringify(pagesInfo));
+    try {
+      let cookieData = JSON.parse(cookie);
+
+      if (!urlHasParams) {
+        pagesInfo = cookieData;
+      } else {
+        for (let key in cookieData) {
+          if (pagesInfo[key] === undefined) {
+            pagesInfo[key] = cookieData[key];
+          }
+        }
+      }
+    } catch (e) {
+      console.error('Error parsing cookie:', e);
+    }
   }
 
   if (pageParam !== null) {
-    pagesInfo.pageNumber = pageParam;
+    pagesInfo.pageNumber = parseInt(pageParam, 10) - 1;
   }
 
   if (langParam !== null && texts.hasOwnProperty(langParam)) {
     pagesInfo.currentLanguage = langParam;
-  } else if (pagesInfo.isFirstTime) {
+  }
+
+  if (isSketchParam !== null) {
+    pagesInfo.isSketch = isSketchParam === 'true';
+  }
+
+  function bannerLoad() {
+    document.querySelector('.banner').src = `https://twokinds.gallery/image/thumbnail/${getRandomInt(1, 5826)}`;
+  }
+    
+  bannerLoad();
+
+  if (pagesInfo.isFirstTime) {
+    let userLang = navigator.language || navigator.userLanguage;
     if (texts.hasOwnProperty(userLang)) {
       pagesInfo.currentLanguage = userLang;
     } else {
@@ -125,11 +158,13 @@ let pageCounter = document.querySelector('.page-number');
 let sketchVerButton = document.getElementById('sketch-ver-button');
 let goToForm = document.getElementById('go-to-page-form');
 let languageSelect = document.getElementById('language');
+let toggleGlowButton = document.getElementById('remove-glow');
 let sizeSelect = document.getElementById('page-size');
 let downloadButton = document.getElementById('download');
 let lastPageNumber = totalPages;
 let toolsButton = document.getElementById('tools-btn');
 let isToolsShown = false;
+let isVisible = true;
 
 languageSelect.addEventListener('change', function () {
   pagesInfo.currentLanguage = languageSelect.value;
@@ -142,14 +177,14 @@ sizeSelect.addEventListener('change', function () {
   update();
 });
 
-let changePage = function (currentPage, action) {
+let changePage = function (action) {
   if (action === 'first') {
     pagesInfo.pageNumber = 0;
   } else if (action === 'last') {
     pagesInfo.pageNumber = lastPageNumber - 1;
-  } else if (action === 'previous' && currentPage > 0) {
+  } else if (action === 'previous' && pagesInfo.pageNumber > 0) {
     pagesInfo.pageNumber -= 1;
-  } else if (action === 'next' && currentPage < lastPageNumber - 1) {
+  } else if (action === 'next' && pagesInfo.pageNumber < lastPageNumber - 1) {
     pagesInfo.pageNumber += 1;
   }
   update();
@@ -165,42 +200,10 @@ goToForm.addEventListener('submit', function(evt) {
   document.querySelector('.page-input').value = "";
 });
 
-function toggleVisibility(element) {
-  if (element.classList.contains('invisible')) {
-    element.style.display = 'flex';
-    element.offsetHeight; 
-    element.classList.remove('invisible');
-  } else {
-    element.classList.add('invisible');
-    element.addEventListener('transitionend', function handler() {
-      element.style.display = 'none';
-      element.removeEventListener('transitionend', handler);
-    });
-  }
-}
-
 let previewToPage = function (pageNumber) {
   pagesInfo.pageNumber = pageNumber;
   update();
   changeTab(1);
-};
-
-let createPreviews = function() {
-  let archive = document.getElementById('tab-2');
-  for (let i = 1; i <= lastPageNumber; i++) {
-    let link = document.createElement('button');
-    link.onclick = () => previewToPage(i - 1);
-    archive.appendChild(link);
-    let preview = document.createElement('img');
-    preview.classList.add('preview');
-    preview.src = `https://tkuniverse.space/${pagesInfo.currentLanguage}/pages/${i}.png`;
-    link.appendChild(preview);
-  }
-};
-
-let changeTab = function(tabNumber) {
-  document.querySelectorAll('.tab').forEach(tab => tab.classList.add('hidden'));
-  document.getElementById('tab-' + tabNumber).classList.remove('hidden');
 };
 
 let changePageSize = function () {
@@ -232,16 +235,16 @@ function changeUILanguage(lang) {
       element.setAttribute('placeholder', texts[lang][key]);
     }
   });
-}
+};
 
 function getQueryParam(param, url = window.location.href) {
   const urlObj = new URL(url);
   return urlObj.searchParams.get(param);
-}
+};
 
-document.getElementById('remove-glow').addEventListener('click', function() {
+toggleGlowButton.addEventListener('click', function() {
   pagesInfo.isGlow = !pagesInfo.isGlow;
-  document.getElementById('remove-glow').textContent = pagesInfo.isGlow ? texts[pagesInfo.currentLanguage].removePageGlowButton : texts[pagesInfo.currentLanguage].removePageGlowButtonAlt
+  toggleGlowButton.textContent = pagesInfo.isGlow ? texts[pagesInfo.currentLanguage].removePageGlowButton : texts[pagesInfo.currentLanguage].removePageGlowButtonAlt;
   update();
 });
 
@@ -252,3 +255,153 @@ let removeGlow = function () {
     blurredPage.classList.add('hidden');
   }
 };
+
+let updateButtonState = function() {
+  sketchVerButton.textContent = pagesInfo.isSketch 
+    ? texts[pagesInfo.currentLanguage].sketchVerButtonAlt 
+    : texts[pagesInfo.currentLanguage].sketchVerButton;
+  toggleGlowButton.textContent = pagesInfo.isGlow 
+    ? texts[pagesInfo.currentLanguage].removePageGlowButton 
+    : texts[pagesInfo.currentLanguage].removePageGlowButtonAlt;
+};
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function sideBarToggle() {
+  isVisible = !isVisible;
+  let sideBar = document.querySelector('.sidebar');
+  let mainContent = document.querySelector('main');
+  let showSideBar = document.getElementById('show-sidebar');
+
+  if (isVisible) {
+    sideBar.classList.remove('hidden');
+    showSideBar.style.display = 'none';
+    setTimeout(function() {
+      sideBar.style.display = 'flex';
+      mainContent.style.marginLeft = '300px';
+      mainContent.style.width = 'calc(100% - 300px)';
+    }, 50);
+  } else {
+    sideBar.classList.add('hidden');
+    showSideBar.style.display = 'block';
+    setTimeout(function() {
+      sideBar.style.display = 'none';
+      mainContent.style.marginLeft = '0';
+      mainContent.style.width = '100%';
+    }, 50);
+  }
+}
+
+document.getElementById('show-sidebar').addEventListener('click', function() {
+  sideBarToggle();
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  const sidebar = document.querySelector('.sidebar');
+  const mainContent = document.querySelector('main');
+  const showSidebarArea = document.getElementById('show-sidebar');
+  let isSidebarVisible = false;
+
+  function showSidebar() {
+    sidebar.classList.remove('hidden');
+    sidebar.style.display = 'flex';
+    showSidebarArea.style.display = 'none'; // Hide the hover area
+    setTimeout(() => {
+      sidebar.style.transform = 'translateX(0)';
+      mainContent.style.marginLeft = '300px';
+      mainContent.style.width = 'calc(100% - 300px)';
+    }, 10); // Small delay to ensure the transition is applied
+  }
+
+  function hideSidebar() {
+    sidebar.style.transform = 'translateX(-100%)';
+    setTimeout(() => {
+      sidebar.classList.add('hidden');
+      sidebar.style.display = 'none';
+      mainContent.style.marginLeft = '0';
+      mainContent.style.width = '100%';
+      showSidebarArea.style.display = 'block'; // Show the hover area again
+    }, 300); // Match the CSS transition duration
+  }
+
+  showSidebarArea.addEventListener('mouseenter', function() {
+    if (!isSidebarVisible) {
+      showSidebar();
+      isSidebarVisible = true;
+    }
+  });
+
+  sidebar.addEventListener('mouseleave', function() {
+    if (isSidebarVisible) {
+      hideSidebar();
+      isSidebarVisible = false;
+    }
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  const toolsContainer = document.getElementById('tools-container');
+  const toolsButton = document.getElementById('tools-btn');
+  let isToolsVisible = false;
+
+  function showToolsContainer() {
+    toolsContainer.classList.remove('hidden');
+    toolsContainer.style.display = 'block';
+    setTimeout(() => {
+      toolsContainer.style.maxHeight = '100%'; // Adjust based on your content height
+      toolsContainer.style.opacity = '1';
+    }, 10); // Small delay to ensure the transition is applied
+  }
+
+  function hideToolsContainer() {
+    toolsContainer.style.maxHeight = '0';
+    toolsContainer.style.opacity = '0';
+    setTimeout(() => {
+      toolsContainer.classList.add('hidden');
+      toolsContainer.style.display = 'none';
+    }, 300); // Match the CSS transition duration
+  }
+
+  toolsButton.addEventListener('click', function() {
+    if (isToolsVisible) {
+      hideToolsContainer();
+    } else {
+      showToolsContainer();
+    }
+    isToolsVisible = !isToolsVisible;
+  });
+
+  const pageElement = document.querySelector('.page');
+  let touchstartX = 0;
+  let touchendX = 0;
+
+  function handleGesture() {
+    if (touchendX < touchstartX - 50) { // Swipe left
+      changePage('next');
+    }
+    if (touchendX > touchstartX + 50) { // Swipe right
+      changePage('previous');
+    }
+  }
+
+  pageElement.addEventListener('touchstart', function(event) {
+    touchstartX = event.changedTouches[0].screenX;
+  });
+
+  pageElement.addEventListener('touchend', function(event) {
+    touchendX = event.changedTouches[0].screenX;
+    handleGesture();
+  });
+});
+
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'ArrowLeft') {
+    changePage('previous');
+  } else if (event.key === 'ArrowRight') {
+    changePage('next');
+  }
+});
