@@ -7,7 +7,20 @@ let pagesInfo = {
   isGlow: true
 };
 
-const totalPages = 1236;
+let lastPageNumber;
+
+async function fetchTotalPages() {
+  try {
+    const response = await fetch('http://161.35.109.114/');
+    const data = await response.json();
+    lastPageNumber = Number(data.lastPage);
+    update();
+  } catch (error) {
+    console.error('Error fetching total pages:', error);
+  }
+}
+
+fetchTotalPages();
 
 function getCookie(name) {
   let matches = document.cookie.match(new RegExp(
@@ -82,7 +95,7 @@ let update = function () {
   };
 
   setCookie('pagesInfo', JSON.stringify(pagesInfo));
-  pageCounter.textContent = `${pagesInfo.pageNumber + 1}/${lastPageNumber}`;
+  lastPageNumber ? pageCounter.textContent = `${pagesInfo.pageNumber + 1}/${lastPageNumber}` : pageCounter.textContent = `${pagesInfo.pageNumber + 1}/loading...`;
   changePageSize();
   removeGlow();
   updateButtonState();
@@ -161,7 +174,6 @@ let languageSelect = document.getElementById('language');
 let toggleGlowButton = document.getElementById('remove-glow');
 let sizeSelect = document.getElementById('page-size');
 let downloadButton = document.getElementById('download');
-let lastPageNumber = totalPages;
 let toolsButton = document.getElementById('tools-btn');
 let isToolsShown = false;
 let isVisible = true;
@@ -199,12 +211,6 @@ goToForm.addEventListener('submit', function(evt) {
   }
   document.querySelector('.page-input').value = "";
 });
-
-let previewToPage = function (pageNumber) {
-  pagesInfo.pageNumber = pageNumber;
-  update();
-  changeTab(1);
-};
 
 let changePageSize = function () {
   page.className = `page justify-center ${pagesInfo.pageSize}`;
