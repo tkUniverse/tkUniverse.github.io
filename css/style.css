@@ -231,7 +231,7 @@ footer {
   }
 
   .page-space {
-    margin: 0 2rem;
+    margin: 2rem 2rem 0 2rem;
     width: auto;
   }
 
@@ -260,7 +260,7 @@ footer {
     padding: 0.625rem 1.25rem;
     width: auto;
   }
-
+  
   .page-switchers .btn {
     width: auto;
     padding: 10px 5px;
@@ -309,7 +309,7 @@ footer {
     padding: 10px;
     width: auto;
     z-index: 1;
-    margin: 0 2rem;
+    margin: 0 2rem 2rem 2rem;
   }
   
   .page-container {
@@ -319,6 +319,21 @@ footer {
 
   .on-img-nav {
     display: none;
+  }
+
+  .w-600 {
+    width: auto !important;
+    height: auto !important;
+    max-height: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .mb-2rem {
+    margin-bottom: 2rem;
+  }
+
+  .mb-0 {
+    margin-bottom: 0;
   }
 }
 
@@ -379,8 +394,18 @@ footer {
   filter: brightness(50%);
 }
 
+#tools-container #sketch-ver-button, #tools-container #speachless-ver-button, #tools-container #go-to-page-button, #tools-container #download-button, #tools-container .btn {
+  margin: 3px 0;
+}
+
 .w-600 {
-  width: 600px;
+  width: 100%;
+  max-width: 600px;
+  height: calc(100vh - 180px);
+  max-height: 100vh;
+  object-fit: contain;
+  transition: width 0.3s ease, height 0.3s ease;
+  background-color: transparent;
 }
 
 .orig {
@@ -391,12 +416,15 @@ footer {
   width: 300px;
 }
 
-#tools-container .btn {
-  margin-top: 5px;
+#tools-btn {
+  width: auto;
 }
 
 .page-switchers .btn {
-  width: 100%;
+  width: auto;
+  padding: 10px 5px;
+  text-align: center;
+  flex-grow: 1;
   text-align: center;
 }
 
@@ -698,4 +726,13 @@ main {
     height: auto; 
     align-items: flex-start; 
   }
+}
+
+.page-switchers, #tools-btn {
+  width: 100%;
+}
+
+.page-switchers .btn, #tools-btn {
+  width: 100%;
+  box-sizing: border-box; /* Ensure padding and border are included in the width */
 }

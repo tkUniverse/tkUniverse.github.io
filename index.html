@@ -58,12 +58,8 @@
     </aside>
     <div class="content">
       <div class="gap-10 page-container">
-        <div class="page-space">
+        <div class="page-space mb-2rem">
           <div class="image-container">
-            <!-- <div class="on-img-nav fd-r zi-2">
-              <button onclick="changePage('previous')"></button>
-              <button onclick="changePage('next')"></button>
-            </div> -->
             <img class="page justify-center w-600" alt="Comic Page"></img>
             <img class="blurred-page justify-center w-600" alt="Blurred Comic Page"></img>
           </div>
@@ -76,7 +72,7 @@
               <button onclick="changePage('last')" class="btn" data-text="lastPageButton">Last</button>
             </div>
             <div class="fd-c gap-10">
-              <button class="btn" id="tools-btn" data-text="toolsButton")">Tools</button>
+              <button class="btn" id="tools-btn" data-text="toolsButton">Tools</button>
             </div>
           </div>
         </div>
@@ -97,7 +93,7 @@
                 <option value="pl">Polski</option>
                 <option value="ru">Русский</option>
               </select>
-              <select id="page-size">
+              <select id="page-size" class="hidden">
                 <option value="orig" data-text="originalSizeOption">Original</option>
                 <option value="w-600" selected>100%</option>
                 <option value="w-300">50%</option>

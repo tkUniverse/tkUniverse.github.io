@@ -114,6 +114,7 @@ document.addEventListener('DOMContentLoaded', function () {
       let cookieData = JSON.parse(cookie);
 
       if (!urlHasParams) {
+        console.log('Cookie loaded:', cookieData);
         pagesInfo = cookieData;
       } else {
         for (let key in cookieData) {
@@ -127,8 +128,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  if (pageParam !== null) {
+  if (pageParam >= 1 && pageParam <= 1236) {
     pagesInfo.pageNumber = parseInt(pageParam, 10) - 1;
+  } else {
+    console.log('Cookie loaded');
+    pagesInfo = JSON.parse(cookie);
   }
 
   if (langParam !== null && texts.hasOwnProperty(langParam)) {
@@ -352,9 +356,12 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
   const toolsContainer = document.getElementById('tools-container');
   const toolsButton = document.getElementById('tools-btn');
+  const pageSpace = document.querySelector('.page-space');
   let isToolsVisible = false;
 
   function showToolsContainer() {
+    pageSpace.classList.add('mb-0');
+    pageSpace.classList.remove('mb-2rem');
     toolsContainer.classList.remove('hidden');
     toolsContainer.style.display = 'block';
     setTimeout(() => {
@@ -364,6 +371,8 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function hideToolsContainer() {
+    pageSpace.classList.remove('mb-0');
+    pageSpace.classList.add('mb-2rem');
     toolsContainer.style.maxHeight = '0';
     toolsContainer.style.opacity = '0';
     setTimeout(() => {
