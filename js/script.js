@@ -114,7 +114,6 @@ document.addEventListener('DOMContentLoaded', function () {
       let cookieData = JSON.parse(cookie);
 
       if (!urlHasParams) {
-        console.log('Cookie loaded:', cookieData);
         pagesInfo = cookieData;
       } else {
         for (let key in cookieData) {
@@ -124,14 +123,12 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       }
     } catch (e) {
-      console.error('Error parsing cookie:', e);
     }
   }
 
   if (pageParam >= 1 && pageParam <= 1236) {
     pagesInfo.pageNumber = parseInt(pageParam, 10) - 1;
   } else {
-    console.log('Cookie loaded');
     pagesInfo = JSON.parse(cookie);
   }
 
