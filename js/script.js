@@ -11,7 +11,7 @@ let lastPageNumber;
 
 async function fetchTotalPages() {
   try {
-    const response = await fetch('http://lastpage.tkuniverse.space/');
+    const response = await fetch('https://lastpage.tkuniverse.space/');
     const data = await response.json();
     lastPageNumber = Number(data.lastPage);
     update();
