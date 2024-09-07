@@ -1,3 +1,5 @@
+<img alt="Twokinds Universe" src="https://tkuniverse.space/logo.svg" width="50px" height="50px">
+
 # Twokinds Universe
 
 Explore everything about the Twokinds webcomic in one place! Discover comics, characters, galleries, and more. Join the Twokinds Universe!
