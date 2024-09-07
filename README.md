@@ -18,8 +18,8 @@ Explore everything about the Twokinds webcomic in one place! Discover comics, ch
 
 1. **Clone the repository**:
    ```sh
-   git clone https://github.com/yourusername/twokinds-universe.git
-   cd twokinds-universe
+   git clone https://github.com/tkUniverse/tkUniverse.github.io.git
+   cd tkUniverse.github.io
    ```
 
 2. **Install dependencies**:
