@@ -1,4 +1,4 @@
-<img alt="Twokinds Universe" src="https://tkuniverse.space/logo.svg" width="50px" height="50px">
+<img alt="Twokinds Universe" src="https://tkuniverse.space/img/logo.svg" width="50px" height="50px">
 
 # Twokinds Universe
 
