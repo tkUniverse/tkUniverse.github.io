@@ -1,5 +1,7 @@
 <img alt="Twokinds Universe" src="https://tkuniverse.space/img/logo.svg" width="50px" height="50px">
 
+[![License](https://img.shields.io/github/license/tkuniverse/tkUniverse.github.io)](https://github.com/tkuniverse/tkUniverse.github.io/blob/main/LICENSE)
+
 # Twokinds Universe
 
 Explore everything about the Twokinds webcomic in one place! Discover comics, characters, galleries, and more. Join the Twokinds Universe!
@@ -7,8 +9,8 @@ Explore everything about the Twokinds webcomic in one place! Discover comics, ch
 ## Features
 
 - **Comic Viewer**: Browse through the Twokinds comic pages.
-- **Gallery**: Explore all Twokinds-related artwork.
-- **Wiki**: Dive into the Twokinds universe with the community wiki.
+- **Gallery**: Explore all Twokinds-related artwork. [Work in progress]
+- **Wiki**: Dive into the Twokinds universe with the community wiki. [Work in progress]
 - **Multilingual Support**: Available in multiple languages.
 - **Responsive Design**: Optimized for both desktop and mobile devices.
 
