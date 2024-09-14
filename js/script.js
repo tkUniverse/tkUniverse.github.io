@@ -17,6 +17,7 @@ async function fetchTotalPages() {
     update();
   } catch (error) {
     console.error('Error fetching total pages:', error);
+    lastPageNumber = 1500;
   }
 }
 
