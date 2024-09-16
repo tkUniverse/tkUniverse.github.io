@@ -339,6 +339,10 @@ footer {
   .margins-disabled {
     margin: 0 !important;
   }
+
+  #disable-swipes, #disable-margins {
+    display: inline !important;
+  }
 }
 
 .zi-1 {
@@ -741,3 +745,6 @@ main {
   box-sizing: border-box; /* Ensure padding and border are included in the width */
 }
 
+#disable-swipes, #disable-margins {
+  display: none;
+}
