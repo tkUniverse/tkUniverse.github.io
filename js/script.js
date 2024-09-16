@@ -429,3 +429,13 @@ document.addEventListener('keydown', function(event) {
     changePage('next');
   }
 });
+
+document.getElementById('disable-swipes').addEventListener('click', function() {
+  pagesInfo.isSwipeEnabled = !pagesInfo.isSwipeEnabled;
+  update();
+});
+
+document.getElementById('disable-margins').addEventListener('click', function() {
+  pagesInfo.isMarginsEnabled = !pagesInfo.isMarginsEnabled;
+  update();
+});
