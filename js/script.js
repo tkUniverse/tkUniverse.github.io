@@ -19,6 +19,7 @@ async function fetchTotalPages() {
     update();
   } catch (error) {
     console.error('Error fetching total pages:', error);
+    lastPageNumber = 1500;
   }
 }
 
@@ -427,14 +428,4 @@ document.addEventListener('keydown', function(event) {
   } else if (event.key === 'ArrowRight') {
     changePage('next');
   }
-});
-
-document.getElementById('disable-swipes').addEventListener('click', function() {
-  pagesInfo.isSwipeEnabled = !pagesInfo.isSwipeEnabled;
-  update();
-});
-
-document.getElementById('disable-margins').addEventListener('click', function() {
-  pagesInfo.isMarginsEnabled = !pagesInfo.isMarginsEnabled;
-  update();
 });
