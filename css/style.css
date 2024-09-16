@@ -335,6 +335,10 @@ footer {
   .mb-0 {
     margin-bottom: 0;
   }
+
+  .margins-disabled {
+    margin: 0 !important;
+  }
 }
 
 .zi-1 {
@@ -736,3 +740,4 @@ main {
   width: 100%;
   box-sizing: border-box; /* Ensure padding and border are included in the width */
 }
+

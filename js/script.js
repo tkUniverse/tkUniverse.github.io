@@ -4,14 +4,16 @@ let pagesInfo = {
   currentLanguage: 'en',
   isFirstTime: true,
   isSketch: false,
-  isGlow: true
+  isGlow: true,
+  isSwipeEnabled: true,
+  isMarginsEnabled: true
 };
 
 let lastPageNumber;
 
 async function fetchTotalPages() {
   try {
-    const response = await fetch('https://lastpage.tkuniverse.space/');
+    const response = await fetch('https://api.tkuniverse.space/');
     const data = await response.json();
     lastPageNumber = Number(data.lastPage);
     update();
@@ -67,9 +69,9 @@ let update = function () {
 
   document.querySelector('.image-container').classList.remove('page-error');
 
-  let imgUrl = `https://tkuniverse.space/${pagesInfo.currentLanguage}/pages/${pagesInfo.pageNumber + 1}.png`;
-  let sketchUrl = `https://tkuniverse.space/sketch/pages/${pagesInfo.pageNumber + 1}.png`;
-  let currentUrl = pagesInfo.isSketch ? sketchUrl : imgUrl;
+  const imgUrl = `https://tkuniverse.space/${pagesInfo.currentLanguage}/pages/${pagesInfo.pageNumber + 1}.png`;
+  const sketchUrl = `https://tkuniverse.space/sketch/pages/${pagesInfo.pageNumber + 1}.png`;
+  const currentUrl = pagesInfo.isSketch ? sketchUrl : imgUrl;
 
   sketchVerButton.disabled = pagesInfo.pageNumber < 857;
 
@@ -94,6 +96,14 @@ let update = function () {
     this.src = 'img/placeholder.png';
   };
 
+  if (pagesInfo.isMarginsEnabled) {
+    document.querySelector('.page-space').classList.remove('margins-disabled');
+    document.getElementById('tools-container').classList.remove('margins-disabled');
+  } else {
+    document.querySelector('.page-space').classList.add('margins-disabled');
+    document.getElementById('tools-container').classList.add('margins-disabled');
+  }
+
   setCookie('pagesInfo', JSON.stringify(pagesInfo));
   lastPageNumber ? pageCounter.textContent = `${pagesInfo.pageNumber + 1}/${lastPageNumber}` : pageCounter.textContent = `${pagesInfo.pageNumber + 1}/loading...`;
   changePageSize();
@@ -102,12 +112,12 @@ let update = function () {
 };
 
 document.addEventListener('DOMContentLoaded', function () {
-  let pageParam = getQueryParam('p');
-  let langParam = getQueryParam('l');
-  let isSketchParam = getQueryParam('s');
-  let urlHasParams = pageParam !== null || langParam !== null || isSketchParam !== null;
+  const pageParam = getQueryParam('p');
+  const langParam = getQueryParam('l');
+  const isSketchParam = getQueryParam('s');
+  const urlHasParams = pageParam !== null || langParam !== null || isSketchParam !== null;
 
-  let cookie = getCookie('pagesInfo');
+  const cookie = getCookie('pagesInfo');
   
   if (cookie) {
     try {
@@ -147,7 +157,7 @@ document.addEventListener('DOMContentLoaded', function () {
   bannerLoad();
 
   if (pagesInfo.isFirstTime) {
-    let userLang = navigator.language || navigator.userLanguage;
+    const userLang = navigator.language || navigator.userLanguage;
     if (texts.hasOwnProperty(userLang)) {
       pagesInfo.currentLanguage = userLang;
     } else {
@@ -158,24 +168,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
   changeUILanguage(pagesInfo.currentLanguage);
   languageSelect.value = pagesInfo.currentLanguage;
-  
-  sketchVerButton.textContent = pagesInfo.isSketch 
-    ? texts[pagesInfo.currentLanguage].sketchVerButtonAlt 
-    : texts[pagesInfo.currentLanguage].sketchVerButton;
 
   update();
 });
 
-let page = document.querySelector('.page');
-let blurredPage = document.querySelector('.blurred-page');
-let pageCounter = document.querySelector('.page-number');
-let sketchVerButton = document.getElementById('sketch-ver-button');
-let goToForm = document.getElementById('go-to-page-form');
-let languageSelect = document.getElementById('language');
-let toggleGlowButton = document.getElementById('remove-glow');
-let sizeSelect = document.getElementById('page-size');
-let downloadButton = document.getElementById('download');
-let toolsButton = document.getElementById('tools-btn');
+const page = document.querySelector('.page');
+const blurredPage = document.querySelector('.blurred-page');
+const pageCounter = document.querySelector('.page-number');
+const sketchVerButton = document.getElementById('sketch-ver-button');
+const goToForm = document.getElementById('go-to-page-form');
+const languageSelect = document.getElementById('language');
+const toggleGlowButton = document.getElementById('remove-glow');
+const sizeSelect = document.getElementById('page-size');
+const downloadButton = document.getElementById('download');
+const toolsButton = document.getElementById('tools-btn');
 let isToolsShown = false;
 let isVisible = true;
 
@@ -220,9 +226,6 @@ let changePageSize = function () {
 
 sketchVerButton.addEventListener('click', function() {
   pagesInfo.isSketch = !pagesInfo.isSketch;
-  sketchVerButton.textContent = pagesInfo.isSketch 
-    ? texts[pagesInfo.currentLanguage].sketchVerButtonAlt 
-    : texts[pagesInfo.currentLanguage].sketchVerButton;
   update();
 });
 
@@ -251,11 +254,10 @@ function getQueryParam(param, url = window.location.href) {
 
 toggleGlowButton.addEventListener('click', function() {
   pagesInfo.isGlow = !pagesInfo.isGlow;
-  toggleGlowButton.textContent = pagesInfo.isGlow ? texts[pagesInfo.currentLanguage].removePageGlowButton : texts[pagesInfo.currentLanguage].removePageGlowButtonAlt;
   update();
 });
 
-let removeGlow = function () {
+function removeGlow() {
   if (pagesInfo.isGlow) {
     blurredPage.classList.remove('hidden');
   } else {
@@ -263,13 +265,19 @@ let removeGlow = function () {
   }
 };
 
-let updateButtonState = function() {
+function updateButtonState() {
   sketchVerButton.textContent = pagesInfo.isSketch 
     ? texts[pagesInfo.currentLanguage].sketchVerButtonAlt 
     : texts[pagesInfo.currentLanguage].sketchVerButton;
   toggleGlowButton.textContent = pagesInfo.isGlow 
     ? texts[pagesInfo.currentLanguage].removePageGlowButton 
     : texts[pagesInfo.currentLanguage].removePageGlowButtonAlt;
+  document.getElementById('disable-swipes').textContent = pagesInfo.isSwipeEnabled 
+    ? texts[pagesInfo.currentLanguage].disableSwipesButton 
+    : texts[pagesInfo.currentLanguage].disableSwipesButtonAlt;
+  document.getElementById('disable-margins').textContent = pagesInfo.isMarginsEnabled 
+    ? texts[pagesInfo.currentLanguage].disableMarginsButton 
+    : texts[pagesInfo.currentLanguage].disableMarginsButtonAlt;
 };
 
 function getRandomInt(min, max) {
@@ -388,25 +396,28 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   const pageElement = document.querySelector('.page');
+  
   let touchstartX = 0;
   let touchendX = 0;
-
+  
   function handleGesture() {
-    if (touchendX < touchstartX - 50) { // Swipe left
+    if (touchendX < touchstartX - 50) {
       changePage('next');
     }
-    if (touchendX > touchstartX + 50) { // Swipe right
+    if (touchendX > touchstartX + 50) {
       changePage('previous');
     }
   }
-
+  
   pageElement.addEventListener('touchstart', function(event) {
     touchstartX = event.changedTouches[0].screenX;
   });
 
   pageElement.addEventListener('touchend', function(event) {
-    touchendX = event.changedTouches[0].screenX;
-    handleGesture();
+    if (pagesInfo.isSwipeEnabled) {
+      touchendX = event.changedTouches[0].screenX;
+      handleGesture();
+    }
   });
 });
 
@@ -416,4 +427,14 @@ document.addEventListener('keydown', function(event) {
   } else if (event.key === 'ArrowRight') {
     changePage('next');
   }
+});
+
+document.getElementById('disable-swipes').addEventListener('click', function() {
+  pagesInfo.isSwipeEnabled = !pagesInfo.isSwipeEnabled;
+  update();
+});
+
+document.getElementById('disable-margins').addEventListener('click', function() {
+  pagesInfo.isMarginsEnabled = !pagesInfo.isMarginsEnabled;
+  update();
 });
