@@ -2,11 +2,8 @@ let pagesInfo = {
   pageNumber: 0,
   pageSize: 'w-600',
   currentLanguage: 'en',
-  isFirstTime: true,
   isSketch: false,
   isGlow: true,
-  isSwipeEnabled: true,
-  isMarginsEnabled: true
 };
 
 let lastPageNumber;
@@ -24,37 +21,6 @@ async function fetchTotalPages() {
 }
 
 fetchTotalPages();
-
-function getCookie(name) {
-  let matches = document.cookie.match(new RegExp(
-    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-  ));
-  return matches ? decodeURIComponent(matches[1]) : undefined;
-}
-
-function setCookie(name, value, options = {}) {
-  options = {
-    path: '/',
-    SameSite: 'Lax',
-    ...options
-  };
-
-  if (options.expires instanceof Date) {
-    options.expires = options.expires.toUTCString();
-  }
-
-  let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
-
-  for (let optionKey in options) {
-    updatedCookie += "; " + optionKey;
-    let optionValue = options[optionKey];
-    if (optionValue !== true) {
-      updatedCookie += "=" + optionValue;
-    }
-  }
-
-  document.cookie = updatedCookie;
-}
 
 let update = function () {
   const url = new URL(window.location.href);
@@ -97,15 +63,6 @@ let update = function () {
     this.src = 'img/placeholder.png';
   };
 
-  if (pagesInfo.isMarginsEnabled) {
-    document.querySelector('.page-space').classList.remove('margins-disabled');
-    document.getElementById('tools-container').classList.remove('margins-disabled');
-  } else {
-    document.querySelector('.page-space').classList.add('margins-disabled');
-    document.getElementById('tools-container').classList.add('margins-disabled');
-  }
-
-  setCookie('pagesInfo', JSON.stringify(pagesInfo));
   lastPageNumber ? pageCounter.textContent = `${pagesInfo.pageNumber + 1}/${lastPageNumber}` : pageCounter.textContent = `${pagesInfo.pageNumber + 1}/loading...`;
   changePageSize();
   removeGlow();
@@ -116,31 +73,9 @@ document.addEventListener('DOMContentLoaded', function () {
   const pageParam = getQueryParam('p');
   const langParam = getQueryParam('l');
   const isSketchParam = getQueryParam('s');
-  const urlHasParams = pageParam !== null || langParam !== null || isSketchParam !== null;
 
-  const cookie = getCookie('pagesInfo');
-  
-  if (cookie) {
-    try {
-      let cookieData = JSON.parse(cookie);
-
-      if (!urlHasParams) {
-        pagesInfo = cookieData;
-      } else {
-        for (let key in cookieData) {
-          if (pagesInfo[key] === undefined) {
-            pagesInfo[key] = cookieData[key];
-          }
-        }
-      }
-    } catch (e) {
-    }
-  }
-
-  if (pageParam >= 1 && pageParam <= 1236) {
+  if (pageParam !== null && !isNaN(pageParam)) {
     pagesInfo.pageNumber = parseInt(pageParam, 10) - 1;
-  } else {
-    pagesInfo = JSON.parse(cookie);
   }
 
   if (langParam !== null && texts.hasOwnProperty(langParam)) {
@@ -154,18 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function bannerLoad() {
     document.querySelector('.banner').src = `https://twokinds.gallery/image/thumbnail/${getRandomInt(1, 5826)}`;
   }
-    
   bannerLoad();
-
-  if (pagesInfo.isFirstTime) {
-    const userLang = navigator.language || navigator.userLanguage;
-    if (texts.hasOwnProperty(userLang)) {
-      pagesInfo.currentLanguage = userLang;
-    } else {
-      pagesInfo.currentLanguage = 'en';
-    }
-    pagesInfo.isFirstTime = false;
-  }
 
   changeUILanguage(pagesInfo.currentLanguage);
   languageSelect.value = pagesInfo.currentLanguage;
@@ -273,12 +197,6 @@ function updateButtonState() {
   toggleGlowButton.textContent = pagesInfo.isGlow 
     ? texts[pagesInfo.currentLanguage].removePageGlowButton 
     : texts[pagesInfo.currentLanguage].removePageGlowButtonAlt;
-  document.getElementById('disable-swipes').textContent = pagesInfo.isSwipeEnabled 
-    ? texts[pagesInfo.currentLanguage].disableSwipesButton 
-    : texts[pagesInfo.currentLanguage].disableSwipesButtonAlt;
-  document.getElementById('disable-margins').textContent = pagesInfo.isMarginsEnabled 
-    ? texts[pagesInfo.currentLanguage].disableMarginsButton 
-    : texts[pagesInfo.currentLanguage].disableMarginsButtonAlt;
 };
 
 function getRandomInt(min, max) {
@@ -325,12 +243,12 @@ document.addEventListener('DOMContentLoaded', function() {
   function showSidebar() {
     sidebar.classList.remove('hidden');
     sidebar.style.display = 'flex';
-    showSidebarArea.style.display = 'none'; // Hide the hover area
+    showSidebarArea.style.display = 'none';
     setTimeout(() => {
       sidebar.style.transform = 'translateX(0)';
       mainContent.style.marginLeft = '300px';
       mainContent.style.width = 'calc(100% - 300px)';
-    }, 10); // Small delay to ensure the transition is applied
+    }, 10);
   }
 
   function hideSidebar() {
@@ -340,8 +258,8 @@ document.addEventListener('DOMContentLoaded', function() {
       sidebar.style.display = 'none';
       mainContent.style.marginLeft = '0';
       mainContent.style.width = '100%';
-      showSidebarArea.style.display = 'block'; // Show the hover area again
-    }, 300); // Match the CSS transition duration
+      showSidebarArea.style.display = 'block';
+    }, 300);
   }
 
   showSidebarArea.addEventListener('mouseenter', function() {
@@ -395,31 +313,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     isToolsVisible = !isToolsVisible;
   });
-
-  const pageElement = document.querySelector('.page');
-  
-  let touchstartX = 0;
-  let touchendX = 0;
-  
-  function handleGesture() {
-    if (touchendX < touchstartX - 50) {
-      changePage('next');
-    }
-    if (touchendX > touchstartX + 50) {
-      changePage('previous');
-    }
-  }
-  
-  pageElement.addEventListener('touchstart', function(event) {
-    touchstartX = event.changedTouches[0].screenX;
-  });
-
-  pageElement.addEventListener('touchend', function(event) {
-    if (pagesInfo.isSwipeEnabled) {
-      touchendX = event.changedTouches[0].screenX;
-      handleGesture();
-    }
-  });
 });
 
 document.addEventListener('keydown', function(event) {
@@ -430,12 +323,3 @@ document.addEventListener('keydown', function(event) {
   }
 });
 
-document.getElementById('disable-swipes').addEventListener('click', function() {
-  pagesInfo.isSwipeEnabled = !pagesInfo.isSwipeEnabled;
-  update();
-});
-
-document.getElementById('disable-margins').addEventListener('click', function() {
-  pagesInfo.isMarginsEnabled = !pagesInfo.isMarginsEnabled;
-  update();
-});

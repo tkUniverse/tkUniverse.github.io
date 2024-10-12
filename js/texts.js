@@ -28,10 +28,6 @@ const texts = {
         aboutButtonDesc: 'Learn more about the comic and this website',
         discordButton: 'Discord',
         discordButtonDesc: 'Join the Twokinds fan community in Discord',
-        disableSwipesButton: 'Disable swipes',
-        disableSwipesButtonAlt: 'Enable swipes',
-        disableMarginsButton: 'Disable margins',
-        disableMarginsButtonAlt: 'Enable margins'
     },
     
     ru: {
@@ -63,10 +59,6 @@ const texts = {
         aboutButtonDesc: 'Узнайте больше о комиксе и этом сайте',
         discordButton: 'Discord',
         discordButtonDesc: 'Присоединяйтесь к фанатскому сообществу Twokinds в Discord',
-        disableSwipesButton: "Отключить жесты",
-        disableSwipesButtonAlt: "Включить жесты",
-        disableMarginsButton: "Отключить отступы",
-        disableMarginsButtonAlt: "Включить отступы"
     },
     
     be: {
@@ -98,10 +90,6 @@ const texts = {
         aboutButtonDesc: 'Даведайцеся больш пра комікс і гэты сайт',
         discordButton: 'Discord',
         discordButtonDesc: 'Далучайцеся да фанатскай супольнасці Twokinds у Discord',
-        disableSwipesButton: "Адключыць жэсты",
-        disableSwipesButtonAlt: "Уключыць жэсты",
-        disableMarginsButton: "Адключыць адступы",
-        disableMarginsButtonAlt: "Уключыць адступы"
     },
 
     it: {
@@ -133,10 +121,6 @@ const texts = {
         aboutButtonDesc: 'Scopri di più sul fumetto e su questo sito web',
         discordButton: 'Discord',
         discordButtonDesc: 'Unisciti alla comunità di fan di Twokinds su Discord',
-        disableSwipesButton: "Disabilita scorrimenti",
-        disableSwipesButtonAlt: "Abilita scorrimenti",
-        disableMarginsButton: "Disabilita margini",
-        disableMarginsButtonAlt: "Abilita margini"
     },
     
     fr: {
@@ -168,10 +152,6 @@ const texts = {
         aboutButtonDesc: 'En savoir plus sur la bande dessinée et ce site',
         discordButton: 'Discord',
         discordButtonDesc: 'Rejoignez la communauté de fans de Twokinds sur Discord',
-        disableSwipesButton: "Désactiver les balayages",
-        disableSwipesButtonAlt: "Activer les balayages",
-        disableMarginsButton: "Désactiver les marges",
-        disableMarginsButtonAlt: "Activer les marges"
     },
     
     es: {
@@ -203,10 +183,6 @@ const texts = {
         aboutButtonDesc: 'Aprende más sobre el cómic y este sitio web',
         discordButton: 'Discord',
         discordButtonDesc: 'Únete a la comunidad de fans de Twokinds en Discord',
-        disableSwipesButton: "Desactivar deslizamientos",
-        disableSwipesButtonAlt: "Activar deslizamientos",
-        disableMarginsButton: "Desactivar márgenes",
-        disableMarginsButtonAlt: "Activar márgenes"
     },
     
     de: {
@@ -238,10 +214,6 @@ const texts = {
         aboutButtonDesc: 'Erfahren Sie mehr über den Comic und diese Website',
         discordButton: 'Discord',
         discordButtonDesc: 'Treten Sie der Twokinds-Fangemeinde bei Discord bei',
-        disableSwipesButton: "Wischen deaktivieren",
-        disableSwipesButtonAlt: "Wischen aktivieren",
-        disableMarginsButton: "Ränder deaktivieren",
-        disableMarginsButtonAlt: "Ränder aktivieren"
     },
 
     pt: {
@@ -304,10 +276,6 @@ const texts = {
         aboutButtonDesc: 'Dowiedz się więcej o komiksie i tej stronie',
         discordButton: 'Discord',
         discordButtonDesc: 'Dołącz do społeczności fanów Twokinds na Discordzie',
-        disableSwipesButton: "Wyłącz gesty",
-        disableSwipesButtonAlt: "Włącz gesty",
-        disableMarginsButton: "Wyłącz marginesy",
-        disableMarginsButtonAlt: "Włącz marginesy"
     },
 
     cs: {
@@ -339,9 +307,5 @@ const texts = {
         aboutButtonDesc: 'Zjistěte více o komiksu a této stránce',
         discordButton: 'Discord',
         discordButtonDesc: 'Připojte se ke komunitě fanoušků Twokinds na Discordu',
-        disableSwipesButton: "Vypnout gesta",
-        disableSwipesButtonAlt: "Zapnout gesta",
-        disableMarginsButton: "Vypnout okraje",
-        disableMarginsButtonAlt: "Zapnout okraje"
     }    
 };
