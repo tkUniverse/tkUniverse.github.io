@@ -17,53 +17,62 @@
     <meta name="keywords" content="twokinds, twokinds gallery, tkuniverse, twokinds universe, two kinds universe, furry, furry comics, furry comic, two kinds comic, two kinds, twokinds rus, twokinds art">
     <meta name="description" content="Explore Everything About Twokinds Webcomic in One Place! Discover comic, characters, gallery, and more. Join the Twokinds Universe!">
 </head>
+<noscript>
+    <style type="text/css">
+        main {display:none;}
+        .noscriptmsg {display:flex;justify-content:center;align-items:center;height:100vh;font-size:2em;color:white;text-align:center;}
+    </style>
+    <div class="noscriptmsg">
+      You don't have javascript enabled, silly!<br>This website won't work without it.<br>:>
+    </div>
+</noscript>
 <body>
-<main>
-    <div class="page-container">
-        <div class="image-container">
-            <img class="page" alt="Comic Page"></img>
-            <img class="blurred-page" alt="Blurred Comic Page"></img>
-        </div>
-        <div class="navigation-container">
-            <button onclick="changePage('first')" class="navigation-button button"><img src="img/double-arrow.svg"></button>
-            <button onclick="changePage('previous')" class="navigation-button button"><img src="img/arrow.svg"></button>
-            <button onclick="changePage('next')" class="navigation-button button"><img src="img/arrow.svg" style="transform: scaleX(-1);"></button>
-            <button onclick="changePage('last')" class="navigation-button button"><img src="img/double-arrow.svg" style="transform: scaleX(-1);"></button>
-        </div>
-        <p class="page-number navigation-button"></p>
-    </div>
-    <div class="island-container">
-        <div class="island">
-            <div class="settings-container">
-                <p class="title" data-text="pageOptionsTitle">Page options</p>
-                <button id="sketch-ver-button" class="button" data-text="sketchVerButton">Sketch</button>
-                <button id="speechless-ver-button" class="button" data-text="speechlessVerButton" disabled>Speechless</button>
-                <select id="language" class="button">
-                    <option value="be">Беларуская</option>
-                    <option value="cs">Čeština</option>
-                    <option value="de">Deutsch</option>
-                    <option value="en">English</option>
-                    <option value="es">Español</option>
-                    <option value="fr">Français</option>
-                    <option value="it">Italiano</option>
-                    <option value="pl">Polski</option>
-                    <option value="ru">Русский</option>
-                </select>
-                <a id="download"><button class="button" id="download-button" data-text="downloadButton">Download</button></a>
+    <main>
+        <div class="page-container">
+            <div class="image-container">
+                <img class="page" alt="Comic Page"></img>
+                <img class="blurred-page" alt="Blurred Comic Page"></img>
             </div>
-            <div class="search-container">
-                <p class="title" data-text="findPageTitle">Find page</p>
-                <form id="go-to-page-form">
-                    <input type="number" placeholder="Page Number" id="page-input" class="button" data-placeholder="pageInput"></input>
-                    <button id="go-to-page-button" class="button" type="submit" data-text="goToPageButton">Go to</button>
-                </form>
+            <div class="navigation-container">
+                <button onclick="changePage('first')" class="navigation-button button"><img src="img/double-arrow.svg"></button>
+                <button onclick="changePage('previous')" class="navigation-button button"><img src="img/arrow.svg"></button>
+                <button onclick="changePage('next')" class="navigation-button button"><img src="img/arrow.svg" style="transform: scaleX(-1);"></button>
+                <button onclick="changePage('last')" class="navigation-button button"><img src="img/double-arrow.svg" style="transform: scaleX(-1);"></button>
+            </div>
+            <p class="page-number navigation-button"></p>
+        </div>
+        <div class="island-container">
+            <div class="island">
+                <div class="settings-container">
+                    <p class="title" data-text="pageOptionsTitle">Page options</p>
+                    <button id="sketch-ver-button" class="button" data-text="sketchVerButton">Sketch</button>
+                    <button id="speechless-ver-button" class="button" data-text="speechlessVerButton" disabled>Speechless</button>
+                    <select id="language" class="button">
+                        <option value="be">Беларуская</option>
+                        <option value="cs">Čeština</option>
+                        <option value="de">Deutsch</option>
+                        <option value="en">English</option>
+                        <option value="es">Español</option>
+                        <option value="fr">Français</option>
+                        <option value="it">Italiano</option>
+                        <option value="pl">Polski</option>
+                        <option value="ru">Русский</option>
+                    </select>
+                    <a id="download"><button class="button" id="download-button" data-text="downloadButton">Download</button></a>
+                </div>
+                <div class="search-container">
+                    <p class="title" data-text="findPageTitle">Find page</p>
+                    <form id="go-to-page-form">
+                        <input type="number" placeholder="Page Number" id="page-input" class="button" data-placeholder="pageInput"></input>
+                        <button id="go-to-page-button" class="button" type="submit" data-text="goToPageButton">Go to</button>
+                    </form>
+                </div>
+            </div>
+            <div class="island">
+                <p class="title" data-text="licenseTitle">License</p>
+                <a href="https://twokinds.keenspot.com/license/" target="_blank"><p data-text="license" class="license"></p></a>
             </div>
         </div>
-        <div class="island">
-            <p class="title" data-text="licenseTitle">License</p>
-            <a href="https://twokinds.keenspot.com/license/" target="_blank"><p data-text="license" class="license"></p></a>
-        </div>
-    </div>
-</main>
+    </main>
 </body>
 </html>

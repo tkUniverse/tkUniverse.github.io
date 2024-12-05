@@ -24,7 +24,7 @@ fetchTotalPages();
 function isMobileDevice() {
   const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
-  const mobileRegex = /android|bb\d+|meego|blackberry|ip(hone|od|ad)|iemobile|kindle|silk|mobile|opera mini|fennec|maemo|windows phone|palm|symbian|bada/i;
+  const mobileRegex = /android|bb\d+|meego|blackberry|ip(hone|od)|iemobile|kindle|silk|mobile|opera mini|fennec|maemo|windows phone|palm|symbian|bada/i;
 
   return mobileRegex.test(userAgent) || (window.innerWidth <= 768);
 }
