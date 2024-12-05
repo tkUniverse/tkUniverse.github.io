@@ -3,6 +3,7 @@ let pagesInfo = {
   currentLanguage: 'en',
   isSketch: false,
   isGlow: true,
+  isSpeechless: false,
 };
 
 let lastPageNumber;
@@ -19,6 +20,38 @@ async function fetchTotalPages() {
   }
 }
 
+async function fetchSketchAvailability() {
+  let sketchAvailable;
+  try {
+    const response = await fetch(`https://tkuniverse.space/sketch/pages/${pagesInfo.pageNumber + 1}.png`);
+    if (response.status === 200) {
+      sketchAvailable = true;
+    } else {
+      sketchAvailable = false;
+    }
+  } catch (error) {
+    console.error('Error fetching sketch:', error);
+  }
+
+  return sketchAvailable;
+}
+
+async function fetchSpeechlessAvailability() {
+  let speechlessAvailable;
+  try {
+    const response = await fetch(`https://tkuniverse.space/speechless/pages/${pagesInfo.pageNumber + 1}.png`);
+    if (response.status === 200) {
+      speechlessAvailable = true;
+    } else {
+      speechlessAvailable = false;
+    }
+  } catch (error) {
+    console.error('Error fetching speechless:', error);
+  }
+
+  return speechlessAvailable;
+}
+
 fetchTotalPages();
 
 function isMobileDevice() {
@@ -33,22 +66,15 @@ function redirectBasedOnDevice() {
   const isRedirected = sessionStorage.getItem('redirected');
   const queryParams = new URLSearchParams(window.location.search);
 
-  console.log('Initial queryParams:', queryParams.toString());
-
   if (!isRedirected) {
     sessionStorage.setItem('redirected', 'true');
 
-    // Ensure 'l' (language) parameter is set
     if (!queryParams.has('l')) {
       queryParams.set('l', pagesInfo.currentLanguage);
     }
 
-    console.log('Updated queryParams before redirect:', queryParams.toString());
-
-    // Redirect based on the device type
     const targetPage = isMobileDevice() ? 'mobile.html' : 'index.html';
     const redirectUrl = `${targetPage}?${queryParams.toString()}`;
-    console.log('Redirecting to:', redirectUrl);
 
     window.location.replace(redirectUrl);
   }
@@ -64,15 +90,23 @@ function update() {
     url.searchParams.delete('s', pagesInfo.isSketch);
     pagesInfo.isSketch = false;
   }
+  url.searchParams.set('sp', pagesInfo.isSpeechless);
   window.history.replaceState({}, '', url.toString());
 
   document.querySelector('.image-container').classList.remove('page-error');
 
   const imgUrl = `https://tkuniverse.space/${pagesInfo.currentLanguage}/pages/${pagesInfo.pageNumber + 1}.png`;
   const sketchUrl = `https://tkuniverse.space/sketch/pages/${pagesInfo.pageNumber + 1}.png`;
-  const currentUrl = pagesInfo.isSketch ? sketchUrl : imgUrl;
+  const speechlessUrl = `https://tkuniverse.space/speechless/pages/${pagesInfo.pageNumber + 1}.png`;
+  const currentUrl = pagesInfo.isSpeechless ? speechlessUrl : (pagesInfo.isSketch ? sketchUrl : imgUrl);
 
-  sketchVerButton.disabled = pagesInfo.pageNumber < 857;
+  fetchSketchAvailability().then(sketchAvailable => {
+    sketchVerButton.disabled = !sketchAvailable;
+  });
+
+  fetchSpeechlessAvailability().then(speechlessAvailable => {
+    speechlessVerButton.disabled = !speechlessAvailable;
+  });
 
   document.querySelector('html').lang = pagesInfo.currentLanguage;
   changeUILanguage(pagesInfo.currentLanguage);
@@ -99,64 +133,41 @@ function update() {
   updateButtonState();
 };
 
-// document.addEventListener('DOMContentLoaded', function () {
-//   redirectBasedOnDevice();
-//   const pageParam = getQueryParam('p');
-//   const langParam = getQueryParam('l');
-//   const isSketchParam = getQueryParam('s');
-
-//   if (pageParam !== null && !isNaN(pageParam)) {
-//     pagesInfo.pageNumber = parseInt(pageParam, 10) - 1;
-//   }
-
-//   if (langParam !== null && texts.hasOwnProperty(langParam)) {
-//     pagesInfo.currentLanguage = langParam;
-//   }
-
-//   if (isSketchParam !== null) {
-//     pagesInfo.isSketch = isSketchParam === 'true';
-//   }
-
-//   changeUILanguage(pagesInfo.currentLanguage);
-//   languageSelect.value = pagesInfo.currentLanguage;
-
-//   update();
-// });
-
 document.addEventListener('DOMContentLoaded', function () {
   const pageParam = getQueryParam('p');
   const langParam = getQueryParam('l');
   const isSketchParam = getQueryParam('s');
+  const isSpeechlessParam = getQueryParam('sp');
 
-  // Initialize pagesInfo with query parameters
   if (pageParam !== null && !isNaN(pageParam)) {
     pagesInfo.pageNumber = parseInt(pageParam, 10) - 1;
   }
 
   if (langParam !== null) {
-    pagesInfo.currentLanguage = langParam; // Set the language from query parameter
+    pagesInfo.currentLanguage = langParam;
   }
 
   if (isSketchParam !== null) {
     pagesInfo.isSketch = isSketchParam === 'true';
   }
 
-  // Call redirect AFTER pagesInfo is updated
+  if (isSpeechlessParam !== null) {
+    pagesInfo.isSpeechless = isSpeechlessParam === 'true';
+  }
+
   redirectBasedOnDevice();
 
-  // Update UI language
   changeUILanguage(pagesInfo.currentLanguage);
   languageSelect.value = pagesInfo.currentLanguage;
 
-  // Perform initial page setup
   update();
 });
-
 
 const page = document.querySelector('.page');
 const blurredPage = document.querySelector('.blurred-page');
 const pageCounter = document.querySelector('.page-number');
 const sketchVerButton = document.getElementById('sketch-ver-button');
+const speechlessVerButton = document.getElementById('speechless-ver-button');
 const goToForm = document.getElementById('go-to-page-form');
 const languageSelect = document.getElementById('language');
 const downloadButton = document.getElementById('download');
@@ -199,6 +210,17 @@ let changePageSize = function () {
 
 sketchVerButton.addEventListener('click', function() {
   pagesInfo.isSketch = !pagesInfo.isSketch;
+  if (pagesInfo.isSketch) {
+    pagesInfo.isSpeechless = false;
+  }
+  update();
+});
+
+speechlessVerButton.addEventListener('click', function() {
+  pagesInfo.isSpeechless = !pagesInfo.isSpeechless;
+  if (pagesInfo.isSpeechless) {
+    pagesInfo.isSketch = false;
+  }
   update();
 });
 
@@ -235,8 +257,11 @@ function removeGlow() {
 
 function updateButtonState() {
   sketchVerButton.textContent = pagesInfo.isSketch 
-    ? texts['en'].sketchVerButtonAlt 
+    ? texts['en'].returnButton 
     : texts['en'].sketchVerButton;
+  speechlessVerButton.textContent = pagesInfo.isSpeechless 
+    ? texts['en'].returnButton 
+    : texts['en'].speechlessVerButton;
 };
 
 function getRandomInt(min, max) {
@@ -256,4 +281,3 @@ document.addEventListener('keydown', function(event) {
     changePage('next');
   }
 });
-
