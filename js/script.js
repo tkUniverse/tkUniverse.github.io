@@ -1,6 +1,5 @@
 let pagesInfo = {
   pageNumber: 0,
-  pageSize: 'w-600',
   currentLanguage: 'en',
   isSketch: false,
   isGlow: true,
@@ -22,7 +21,40 @@ async function fetchTotalPages() {
 
 fetchTotalPages();
 
-let update = function () {
+function isMobileDevice() {
+  const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+  const mobileRegex = /android|bb\d+|meego|blackberry|ip(hone|od|ad)|iemobile|kindle|silk|mobile|opera mini|fennec|maemo|windows phone|palm|symbian|bada/i;
+
+  return mobileRegex.test(userAgent) || (window.innerWidth <= 768);
+}
+
+function redirectBasedOnDevice() {
+  const isRedirected = sessionStorage.getItem('redirected');
+  const queryParams = new URLSearchParams(window.location.search);
+
+  console.log('Initial queryParams:', queryParams.toString());
+
+  if (!isRedirected) {
+    sessionStorage.setItem('redirected', 'true');
+
+    // Ensure 'l' (language) parameter is set
+    if (!queryParams.has('l')) {
+      queryParams.set('l', pagesInfo.currentLanguage);
+    }
+
+    console.log('Updated queryParams before redirect:', queryParams.toString());
+
+    // Redirect based on the device type
+    const targetPage = isMobileDevice() ? 'mobile.html' : 'index.html';
+    const redirectUrl = `${targetPage}?${queryParams.toString()}`;
+    console.log('Redirecting to:', redirectUrl);
+
+    window.location.replace(redirectUrl);
+  }
+}
+
+function update() {
   const url = new URL(window.location.href);
   url.searchParams.set('p', pagesInfo.pageNumber + 1);
   url.searchParams.set('l', pagesInfo.currentLanguage);
@@ -42,11 +74,9 @@ let update = function () {
 
   sketchVerButton.disabled = pagesInfo.pageNumber < 857;
 
-  document.getElementById('page-viewer-button').textContent = '';
   document.querySelector('html').lang = pagesInfo.currentLanguage;
   changeUILanguage(pagesInfo.currentLanguage);
   document.querySelector('title').textContent = `Twokinds Universe - Page ${pagesInfo.pageNumber + 1}`;
-  document.getElementById('page-viewer-button').textContent = `${document.getElementById('page-viewer-button').textContent} ${pagesInfo.pageNumber + 1}`;
   page.src = currentUrl;
   blurredPage.src = currentUrl;
   downloadButton.href = currentUrl;
@@ -63,39 +93,65 @@ let update = function () {
     this.src = 'img/placeholder.png';
   };
 
-  lastPageNumber ? pageCounter.textContent = `${pagesInfo.pageNumber + 1}/${lastPageNumber}` : pageCounter.textContent = `${pagesInfo.pageNumber + 1}/loading...`;
+  lastPageNumber ? pageCounter.textContent = `${pagesInfo.pageNumber + 1}/${lastPageNumber} - ${Math.round(pagesInfo.pageNumber / lastPageNumber * 100)}%` : pageCounter.textContent = `${pagesInfo.pageNumber + 1}/loading...`;
   changePageSize();
   removeGlow();
   updateButtonState();
 };
+
+// document.addEventListener('DOMContentLoaded', function () {
+//   redirectBasedOnDevice();
+//   const pageParam = getQueryParam('p');
+//   const langParam = getQueryParam('l');
+//   const isSketchParam = getQueryParam('s');
+
+//   if (pageParam !== null && !isNaN(pageParam)) {
+//     pagesInfo.pageNumber = parseInt(pageParam, 10) - 1;
+//   }
+
+//   if (langParam !== null && texts.hasOwnProperty(langParam)) {
+//     pagesInfo.currentLanguage = langParam;
+//   }
+
+//   if (isSketchParam !== null) {
+//     pagesInfo.isSketch = isSketchParam === 'true';
+//   }
+
+//   changeUILanguage(pagesInfo.currentLanguage);
+//   languageSelect.value = pagesInfo.currentLanguage;
+
+//   update();
+// });
 
 document.addEventListener('DOMContentLoaded', function () {
   const pageParam = getQueryParam('p');
   const langParam = getQueryParam('l');
   const isSketchParam = getQueryParam('s');
 
+  // Initialize pagesInfo with query parameters
   if (pageParam !== null && !isNaN(pageParam)) {
     pagesInfo.pageNumber = parseInt(pageParam, 10) - 1;
   }
 
-  if (langParam !== null && texts.hasOwnProperty(langParam)) {
-    pagesInfo.currentLanguage = langParam;
+  if (langParam !== null) {
+    pagesInfo.currentLanguage = langParam; // Set the language from query parameter
   }
 
   if (isSketchParam !== null) {
     pagesInfo.isSketch = isSketchParam === 'true';
   }
 
-  function bannerLoad() {
-    document.querySelector('.banner').src = `https://twokinds.gallery/image/thumbnail/${getRandomInt(1, 5826)}`;
-  }
-  bannerLoad();
+  // Call redirect AFTER pagesInfo is updated
+  redirectBasedOnDevice();
 
+  // Update UI language
   changeUILanguage(pagesInfo.currentLanguage);
   languageSelect.value = pagesInfo.currentLanguage;
 
+  // Perform initial page setup
   update();
 });
+
 
 const page = document.querySelector('.page');
 const blurredPage = document.querySelector('.blurred-page');
@@ -103,21 +159,13 @@ const pageCounter = document.querySelector('.page-number');
 const sketchVerButton = document.getElementById('sketch-ver-button');
 const goToForm = document.getElementById('go-to-page-form');
 const languageSelect = document.getElementById('language');
-const toggleGlowButton = document.getElementById('remove-glow');
-const sizeSelect = document.getElementById('page-size');
 const downloadButton = document.getElementById('download');
-const toolsButton = document.getElementById('tools-btn');
 let isToolsShown = false;
 let isVisible = true;
 
 languageSelect.addEventListener('change', function () {
   pagesInfo.currentLanguage = languageSelect.value;
   changeUILanguage(pagesInfo.currentLanguage);
-  update();
-});
-
-sizeSelect.addEventListener('change', function () {
-  pagesInfo.pageSize = sizeSelect.value;
   update();
 });
 
@@ -136,12 +184,12 @@ let changePage = function (action) {
 
 goToForm.addEventListener('submit', function(evt) {
   evt.preventDefault();
-  let pageInput = document.querySelector('.page-input').valueAsNumber;
+  let pageInput = document.getElementById('page-input').valueAsNumber;
   if (pageInput >= 1 && pageInput <= lastPageNumber) {
     pagesInfo.pageNumber = pageInput - 1;
     update();
   }
-  document.querySelector('.page-input').value = "";
+  document.getElementById('page-input').value = "";
 });
 
 let changePageSize = function () {
@@ -177,11 +225,6 @@ function getQueryParam(param, url = window.location.href) {
   return urlObj.searchParams.get(param);
 };
 
-toggleGlowButton.addEventListener('click', function() {
-  pagesInfo.isGlow = !pagesInfo.isGlow;
-  update();
-});
-
 function removeGlow() {
   if (pagesInfo.isGlow) {
     blurredPage.classList.remove('hidden');
@@ -192,11 +235,8 @@ function removeGlow() {
 
 function updateButtonState() {
   sketchVerButton.textContent = pagesInfo.isSketch 
-    ? texts[pagesInfo.currentLanguage].sketchVerButtonAlt 
-    : texts[pagesInfo.currentLanguage].sketchVerButton;
-  toggleGlowButton.textContent = pagesInfo.isGlow 
-    ? texts[pagesInfo.currentLanguage].removePageGlowButton 
-    : texts[pagesInfo.currentLanguage].removePageGlowButtonAlt;
+    ? texts['en'].sketchVerButtonAlt 
+    : texts['en'].sketchVerButton;
 };
 
 function getRandomInt(min, max) {
@@ -205,118 +245,12 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function sideBarToggle() {
-  isVisible = !isVisible;
-  let sideBar = document.querySelector('.sidebar');
-  let mainContent = document.querySelector('main');
-  let showSideBar = document.getElementById('show-sidebar');
-
-  if (isVisible) {
-    sideBar.classList.remove('hidden');
-    showSideBar.style.display = 'none';
-    setTimeout(function() {
-      sideBar.style.display = 'flex';
-      mainContent.style.marginLeft = '300px';
-      mainContent.style.width = 'calc(100% - 300px)';
-    }, 50);
-  } else {
-    sideBar.classList.add('hidden');
-    showSideBar.style.display = 'block';
-    setTimeout(function() {
-      sideBar.style.display = 'none';
-      mainContent.style.marginLeft = '0';
-      mainContent.style.width = '100%';
-    }, 50);
-  }
-}
-
-document.getElementById('show-sidebar').addEventListener('click', function() {
-  sideBarToggle();
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-  const sidebar = document.querySelector('.sidebar');
-  const mainContent = document.querySelector('main');
-  const showSidebarArea = document.getElementById('show-sidebar');
-  let isSidebarVisible = false;
-
-  function showSidebar() {
-    sidebar.classList.remove('hidden');
-    sidebar.style.display = 'flex';
-    showSidebarArea.style.display = 'none';
-    setTimeout(() => {
-      sidebar.style.transform = 'translateX(0)';
-      mainContent.style.marginLeft = '300px';
-      mainContent.style.width = 'calc(100% - 300px)';
-    }, 10);
-  }
-
-  function hideSidebar() {
-    sidebar.style.transform = 'translateX(-100%)';
-    setTimeout(() => {
-      sidebar.classList.add('hidden');
-      sidebar.style.display = 'none';
-      mainContent.style.marginLeft = '0';
-      mainContent.style.width = '100%';
-      showSidebarArea.style.display = 'block';
-    }, 300);
-  }
-
-  showSidebarArea.addEventListener('mouseenter', function() {
-    if (!isSidebarVisible) {
-      showSidebar();
-      isSidebarVisible = true;
-    }
-  });
-
-  sidebar.addEventListener('mouseleave', function() {
-    if (isSidebarVisible) {
-      hideSidebar();
-      isSidebarVisible = false;
-    }
-  });
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-  const toolsContainer = document.getElementById('tools-container');
-  const toolsButton = document.getElementById('tools-btn');
-  const pageSpace = document.querySelector('.page-space');
-  let isToolsVisible = false;
-
-  function showToolsContainer() {
-    pageSpace.classList.add('mb-0');
-    pageSpace.classList.remove('mb-2rem');
-    toolsContainer.classList.remove('hidden');
-    toolsContainer.style.display = 'block';
-    setTimeout(() => {
-      toolsContainer.style.maxHeight = '100%'; // Adjust based on your content height
-      toolsContainer.style.opacity = '1';
-    }, 10); // Small delay to ensure the transition is applied
-  }
-
-  function hideToolsContainer() {
-    pageSpace.classList.remove('mb-0');
-    pageSpace.classList.add('mb-2rem');
-    toolsContainer.style.maxHeight = '0';
-    toolsContainer.style.opacity = '0';
-    setTimeout(() => {
-      toolsContainer.classList.add('hidden');
-      toolsContainer.style.display = 'none';
-    }, 300); // Match the CSS transition duration
-  }
-
-  toolsButton.addEventListener('click', function() {
-    if (isToolsVisible) {
-      hideToolsContainer();
-    } else {
-      showToolsContainer();
-    }
-    isToolsVisible = !isToolsVisible;
-  });
-});
-
 document.addEventListener('keydown', function(event) {
-  if (event.key === 'ArrowLeft') {
+  if (event.shiftKey && event.key === 'ArrowLeft') {
+    changePage('first');
+  } else if (event.shiftKey && event.key === 'ArrowRight') {
+    changePage('last');
+  } else if (event.key === 'ArrowLeft') {
     changePage('previous');
   } else if (event.key === 'ArrowRight') {
     changePage('next');

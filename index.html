@@ -18,98 +18,50 @@
   <meta name="description" content="Explore Everything About Twokinds Webcomic in One Place! Discover comic, characters, gallery, and more. Join the Twokinds Universe!">
 </head>
 <body>
-  <div id="show-sidebar" style="display: none;"></div>
   <main>
-    <aside class="sidebar">
-      <div class="sidebar-banner">
-        <button id="sidebar-toggle" onclick="sideBarToggle()"><img src="img/cross.svg" width="40px" title="Hide sidebar"></button>
-        <img src="img/space.png" class="banner">
-        <a href="/"><img src="img/logo.svg" class="logo"></a>
+    <div class="">
+      <div class="page-container">
+        <button onclick="changePage('first')" class="navigation-button button"><img src="img/double-arrow.svg"></button>
+        <button onclick="changePage('previous')" class="navigation-button button"><img src="img/arrow.svg"></button>
+        <div class="image-container">
+          <img class="page" alt="Comic Page"></img>
+          <img class="blurred-page" alt="Blurred Comic Page"></img>
+        </div>
+        <button onclick="changePage('next')" class="navigation-button button"><img src="img/arrow.svg" style="transform: scaleX(-1);"></button>
+        <button onclick="changePage('last')" class="navigation-button button"><img src="img/double-arrow.svg" style="transform: scaleX(-1);"></button>
       </div>
-      <div class="sidebar-content">
-        <div class="sidebar-buttons">
-          <a href="/"><button class="btn">
-            <strong data-text="pageViewerButton">Page viewer</strong>
-            <p id="page-viewer-button" data-text="pageViewerButtonDesc">Continue reading:</p>
-          </button></a>
-          <a href="/coming-soon.html"><button class="btn">
-            <strong data-text="archiveButton">Archive</strong>
-            <p data-text="archiveButtonDesc">Browse through the comic pages archive</p>
-          </button></a>
-          <a href="/coming-soon.html"><button class="btn">
-            <strong data-text="galleryButton">Gallery</strong>
-            <p data-text="galleryButtonDesc">Explore all Twokinds-related artwork</p>
-          </button></a>
-          <a href="/coming-soon.html"><button class="btn">
-            <strong data-text="wikiButton">Wiki</strong>
-            <p data-text="wikiButtonDesc">Dive into the Twokinds universe with the community wiki</p>
-          </button></a>
-          <a href="/coming-soon.html"><button class="btn">
-            <strong data-text="aboutButton">About</strong>
-            <p data-text="aboutButtonDesc">Learn more about the comic and this website</p>
-          </button></a>
-          <a href="https://discord.gg/twokinds" target="_blank"><button class="btn">
-            <strong data-text="discordButton">Discord</strong>
-            <p data-text="discordButtonDesc">Join the Twokinds fan community on Discord</p>
-          </button></a>          
+      <p class="page-number"></p>
+    </div>
+    <div class="island-container">
+      <div class="island">
+        <div class="settings-container">
+          <p class="title" data-text="pageOptionsTitle">Page options</p>
+          <button id="sketch-ver-button" class="button" data-text="sketchVerButton">Sketch</button>
+          <button id="speechless-ver-button" class="button" data-text="speechlessVerButton" disabled>Speechless</button>
+          <select id="language" class="button">
+            <option value="be">Беларуская</option>
+            <option value="cs">Čeština</option>
+            <option value="de">Deutsch</option>
+            <option value="en">English</option>
+            <option value="es">Español</option>
+            <option value="fr">Français</option>
+            <option value="it">Italiano</option>
+            <option value="pl">Polski</option>
+            <option value="ru">Русский</option>
+          </select>
+          <a id="download"><button class="button" id="download-button" data-text="downloadButton">Download</button></a>
         </div>
-        <div class="license"><a href="https://twokinds.keenspot.com/license/" target="_blank"><p data-text="license">TWOKINDS, its logo, and all related characters are copyright © 2024 Thomas J. Fischbach. All rights reserved.</p></a></div>
+        <div class="search-container">
+          <p class="title" data-text="findPageTitle">Find page</p>
+          <form id="go-to-page-form">
+            <input type="number" placeholder="Page Number" id="page-input" class="button" data-placeholder="pageInput"></input>
+            <button id="go-to-page-button" class="button" type="submit" data-text="goToPageButton">Go to</button>
+          </form>
+        </div>
       </div>
-    </aside>
-    <div class="content">
-      <div class="gap-10 page-container">
-        <div class="page-space mb-2rem margins-disabled">
-          <div class="image-container">
-            <img class="page justify-center w-600" alt="Comic Page"></img>
-            <img class="blurred-page justify-center w-600" alt="Blurred Comic Page"></img>
-          </div>
-          <div class="fd-c gap-10 navigation zi-1">
-            <div class="fd-r justify-center gap-5 page-switchers">
-              <button onclick="changePage('first')" class="btn" data-text="firstPageButton">First</button>
-              <button onclick="changePage('previous')" class="btn" data-text="previousPageButton">Previous</button>
-              <p class="page-number col-white btn"></p>
-              <button onclick="changePage('next')" class="btn" data-text="nextPageButton">Next</button>
-              <button onclick="changePage('last')" class="btn" data-text="lastPageButton">Last</button>
-            </div>
-            <div class="fd-c gap-10">
-              <button class="btn" id="tools-btn" data-text="toolsButton">Tools</button>
-            </div>
-          </div>
-        </div>
-        <div id="tools-container" class="gap-10 fd-c margins-disabled" style="display: none;">
-          <div class="page-options-section">
-            <p class="title" data-text="pageOptionsTitle">Page options</p>
-            <div>
-              <button id="sketch-ver-button" class="btn" data-text="sketchVerButton">Sketch</button>
-              <a id="speachless-ver-button" class="btn hidden" target="_blank" data-text="">Speachless</a>
-              <select id="language">
-                <option value="be">Беларуская</option>
-                <option value="cs">Čeština</option>
-                <option value="de">Deutsch</option>
-                <option value="en">English</option>
-                <option value="es">Español</option>
-                <option value="fr">Français</option>
-                <option value="it">Italiano</option>
-                <option value="pl">Polski</option>
-                <option value="ru">Русский</option>
-              </select>
-              <select id="page-size" class="hidden">
-                <option value="orig" data-text="originalSizeOption">Original</option>
-                <option value="w-600" selected>100%</option>
-                <option value="w-300">50%</option>
-              </select>
-              <a id="download"><button class="btn" id="download-button" data-text="downloadButton">Download</button></a>
-              <button class="btn" id="remove-glow" data-text="removePageGlowButton">Disable page glow</button>
-            </div>
-          </div>
-          <div class="fd-c gap-10 zi-1 go-to-page-section">
-            <p class="title" data-text="findPageTitle">Find page</p>
-            <form id="go-to-page-form">
-              <input type="number" placeholder="Page Number" class="page-input" data-placeholder="pageInput"></input>
-              <button id="go-to-page-button" class="btn" type="submit" data-text="goToPageButton">Go to</button>
-            </form>
-          </div>
-        </div>
+      <div class="island">
+        <p class="title" data-text="licenseTitle">License</p>
+        <a href="https://twokinds.keenspot.com/license/" target="_blank"><p data-text="license" class="license">TWOKINDS, its logo, and all related characters are copyright © 2024 Thomas J. Fischbach. All rights reserved.</p></a>
       </div>
     </div>
   </main>

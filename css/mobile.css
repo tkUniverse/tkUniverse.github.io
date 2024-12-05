@@ -30,6 +30,12 @@ html, body {
     font-family: 'Montserrat';
 }
 
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 .button {
     background: var(--btn-bg-color);
     background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), var(--btn-bg-color));
@@ -72,19 +78,19 @@ a {
 /* Page block styles */
 
 .navigation-button {
-    height: Calc(100vh - 50px);
+    width: 100%;
     z-index: 1;
 }
 
 .navigation-button img {
-    height: 20px;
+    height: 10px;
 }
 
 .page {
     position: relative;
     z-index: 1;
     backdrop-filter: blur(50px);
-    height: Calc(100vh - 50px);
+    width: 100vw;
 }
 
 .blurred-page {
@@ -94,15 +100,15 @@ a {
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    height: Calc(100vh - 50px);
+    width: 100vw;
 }
 
 .page-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    width: 100vw;
     justify-content: center;
     gap: 10px;
-    height: Calc(100vh - 50px);
 }
 
 .page-error::before {
@@ -119,6 +125,13 @@ a {
     text-align: center;
 }
 
+.navigation-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 5px;
+}
+
 .page-number {
     background: var(--btn-bg-color);
     background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), var(--btn-bg-color));
@@ -133,9 +146,10 @@ a {
     font-size: 0.75rem;
     font-family: 'Montserrat';
     z-index: 1;
-    height: auto;
     text-align: center;
     cursor: default;
+    width: calc(100% - 42px);
+    margin: 0;
 }
 
 /* Islands */
@@ -146,7 +160,6 @@ a {
     width: 100%;
     height: auto;
     padding: 10px;
-    flex: 1 1 calc(33.333% - 16px);
     box-sizing: border-box;
 }
 
