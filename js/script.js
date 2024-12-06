@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function () {
     pagesInfo.isSpeechless = isSpeechlessParam === 'true';
   }
 
-  redirectBasedOnDevice();
+  // redirectBasedOnDevice();
 
   changeUILanguage(pagesInfo.currentLanguage);
   languageSelect.value = pagesInfo.currentLanguage;

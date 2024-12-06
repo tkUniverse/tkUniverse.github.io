@@ -124,6 +124,23 @@ a {
     cursor: default;
 }
 
+.navigation-button-alt {
+    width: 100%;
+    z-index: 1;
+}
+
+.navigation-button-alt img {
+    height: 10px;
+}
+
+.navigation-container {
+    display: none;
+    flex-direction: row;
+    width: 100vw;
+    gap: 5px;
+    margin-top: 10px;
+}
+
 /* Islands */
 
 .island {
@@ -166,4 +183,29 @@ a {
 
 .settings-container .button:last-child {
     margin-bottom: 10px;
+}
+
+/* Media */
+
+@media only screen and (max-width: 845px) {
+    .page-container {
+        height: auto;
+    }
+    
+    .page-container .button {
+        display: none;
+    }
+    
+    .image-container img {
+        width: 100vw;
+        height: auto;
+    }
+
+    .navigation-container {
+        display: flex;
+    }
+
+    .island {
+        flex: auto;
+    }
 }
